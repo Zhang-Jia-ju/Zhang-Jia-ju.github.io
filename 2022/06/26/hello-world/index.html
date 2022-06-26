@@ -378,9 +378,9 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/26/%E5%AF%B9%E6%95%B0%E5%87%A0%E7%8E%87%E5%9B%9E%E5%BD%92/" title="">
+                      <a href="/2022/06/27/html%E5%85%A5%E9%97%A8/" title="html入门">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">html入门</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -388,8 +388,8 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/10/html%E5%85%A5%E9%97%A8/" title="HTML基础知识">
-                        <span class="hidden-mobile">HTML基础知识</span>
+                      <a href="/2021/10/10/Python%E8%87%AA%E5%AD%A6/" title="Python自学">
+                        <span class="hidden-mobile">Python自学</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -402,20 +402,21 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
             
   <article id="comments" lazyload>
     
-  <div id="valine"></div>
+  <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#valine', function() {
-      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/2.5.1/waline.min.css')
+      Fluid.utils.createScript('https://lib.baomitu.com/waline/2.5.1/waline.min.js', function() {
         var options = Object.assign(
-          {"appId":"PNar5ityKKmAm6EFt6FdTjWM-MdYXbMMI","appKey":"f3F4QOCwdBwdYjYGPBfj5HJb","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {"serverURL":"https://comments.xungirl.cn/","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"highlight":true,"copyright":false,"avatarForce":false},
           {
-            el: "#valine",
+            el: '#waline',
             path: window.location.pathname
           }
         )
-        new Valine(options);
-        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
-          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+        Waline.init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
           Fluid.plugins.imageCaption(imgSelector);
           Fluid.plugins.fancyBox(imgSelector);
         })
