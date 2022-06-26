@@ -16,12 +16,12 @@
   <meta name="author" content="迅">
   <meta name="keywords" content="">
   
-    <meta name="description" content="广义线性模型（Generalized linear model）设$y&#x3D;\hat{w}^{T}\cdot\hat{x},where, \hat{w}&#x3D;(w_1,w_2,\dots,w_n,b)^{T},\hat{x}&#x3D;(x_1,x_2,\dots,x_n,1)^{T}$,令$g(y)&#x3D;\hat{w}^{T}\cdot\hat{x}$，其中$y&#x3D;g(">
+    <meta name="description" content="广义线性模型（Generalized linear model） 设\(y&#x3D;\hat{w}^{T}\cdot\hat{x},where\, \hat{w}&#x3D;(w_1,w_2,\dots,w_n,b)^{T}\,\hat{x}&#x3D;(x_1,x_2,\dots,x_n,1)^{T}\),令\(g(y)&#x3D;\hat{w}^{T}\cdot\hat{x}\)，其中\(y&#x3D;g(x)\)为连续可微函数。则该">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
 <meta property="og:url" content="http://xungirl.cn/2022/06/26/%E5%AF%B9%E6%95%B0%E5%87%A0%E7%8E%87%E5%9B%9E%E5%BD%92/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="广义线性模型（Generalized linear model）设$y&#x3D;\hat{w}^{T}\cdot\hat{x},where, \hat{w}&#x3D;(w_1,w_2,\dots,w_n,b)^{T},\hat{x}&#x3D;(x_1,x_2,\dots,x_n,1)^{T}$,令$g(y)&#x3D;\hat{w}^{T}\cdot\hat{x}$，其中$y&#x3D;g(">
+<meta property="og:description" content="广义线性模型（Generalized linear model） 设\(y&#x3D;\hat{w}^{T}\cdot\hat{x},where\, \hat{w}&#x3D;(w_1,w_2,\dots,w_n,b)^{T}\,\hat{x}&#x3D;(x_1,x_2,\dots,x_n,1)^{T}\),令\(g(y)&#x3D;\hat{w}^{T}\cdot\hat{x}\)，其中\(y&#x3D;g(x)\)为连续可微函数。则该">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="g:/截图/QQ截图20220624122721.png">
 <meta property="og:image" content="g:/截图/QQ截图20220624131440.png">
@@ -254,7 +254,7 @@ color="100,149,237" opacity='0.8' zIndex="-2" count="200" src="//cdn.bootcss.com
         
         
         
-          117 分钟
+          115 分钟
         
       </span>
     
@@ -299,100 +299,139 @@ color="100,149,237" opacity='0.8' zIndex="-2" count="200" src="//cdn.bootcss.com
             
               <div class="markdown-body">
                 
-                <h2 id="广义线性模型（Generalized-linear-model）"><a href="#广义线性模型（Generalized-linear-model）" class="headerlink" title="广义线性模型（Generalized linear model）"></a>广义线性模型（Generalized linear model）</h2><p>设$y&#x3D;\hat{w}^{T}\cdot\hat{x},where, \hat{w}&#x3D;(w_1,w_2,\dots,w_n,b)^{T},\hat{x}&#x3D;(x_1,x_2,\dots,x_n,1)^{T}$,令$g(y)&#x3D;\hat{w}^{T}\cdot\hat{x}$，其中$y&#x3D;g(x)$为连续可微函数。则该模型为广义线性模型，该模型的提出是为了解决线性模型由于简单而带有的局限性。若令$y&#x3D;g(x)&#x3D;ln(x)$，则该模型可表示为$ln(y)&#x3D;\hat{w}^{T}\cdot\hat{x} \iff y&#x3D;\exp(\hat{w}^{T}\cdot\hat{x})$，该模型被称为对数线性模型(logist linear model).</p>
-<h2 id="对数几率模型与逻辑回归"><a href="#对数几率模型与逻辑回归" class="headerlink" title="对数几率模型与逻辑回归"></a>对数几率模型与逻辑回归</h2><ul>
+                <h2 id="广义线性模型generalized-linear-model">广义线性模型（Generalized
+linear model）</h2>
+<p>设<span class="math inline">\(y=\hat{w}^{T}\cdot\hat{x},where\,
+\hat{w}=(w_1,w_2,\dots,w_n,b)^{T}\,\hat{x}=(x_1,x_2,\dots,x_n,1)^{T}\)</span>,令<span
+class="math inline">\(g(y)=\hat{w}^{T}\cdot\hat{x}\)</span>，其中<span
+class="math inline">\(y=g(x)\)</span>为连续可微函数。则该模型为广义线性模型，该模型的提出是为了解决线性模型由于简单而带有的局限性。若令<span
+class="math inline">\(y=g(x)=ln(x)\)</span>，则该模型可表示为<span
+class="math inline">\(ln(y)=\hat{w}^{T}\cdot\hat{x} \iff
+y=\exp(\hat{w}^{T}\cdot\hat{x})\)</span>，该模型被称为对数线性模型(logist
+linear model).</p>
+<h2 id="对数几率模型与逻辑回归">对数几率模型与逻辑回归</h2>
+<ul>
 <li>几率(odd)</li>
 </ul>
-<p>几率不是概率，而是一个事件发生与不发生的概率的比值。假设某事件A发生的概率为p，则该事件不发生的概率为1-p，该事件的几率为：$odd(A)&#x3D;\frac{p}{1-p}$.在几率的基础上取（自然底数的）对数，则构成该事件的对数几率（logit）：$logit(A)&#x3D;\ln\frac{p}{1-p}$</p>
+<p>几率不是概率，而是一个事件发生与不发生的概率的比值。假设某事件A发生的概率为p，则该事件不发生的概率为1-p，该事件的几率为：<span
+class="math inline">\(odd(A)=\frac{p}{1-p}\)</span>.在几率的基础上取（自然底数的）对数，则构成该事件的对数几率（logit）：<span
+class="math inline">\(logit(A)=\ln\frac{p}{1-p}\)</span></p>
 <ul>
 <li>对数几率模型</li>
 </ul>
-<p>如果我们将对数几率看成是一个函数，并将其作为联系函数，即$g(y)&#x3D;\ln\frac{y}{1-y}$.则该广义线性模型为：<br>$$<br>\ln\frac{y}{1-y}&#x3D;\hat{w}^{T}\cdot\hat{x} \iff y&#x3D;\frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\quad where,y&#x3D;\frac{1}{1+exp(-z)}被称为Sigmoid函数<br>$$</p>
+<p>如果我们将对数几率看成是一个函数，并将其作为联系函数，即<span
+class="math inline">\(g(y)=\ln\frac{y}{1-y}\)</span>.则该广义线性模型为：
+<span class="math display">\[
+\ln\frac{y}{1-y}=\hat{w}^{T}\cdot\hat{x} \iff
+y=\frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\quad
+where\,y=\frac{1}{1+exp(-z)}被称为Sigmoid函数
+\]</span></p>
 <ul>
 <li>Sigmoid函数及其导数</li>
 </ul>
-<p>$Sigmoid(x)&#x3D;\frac{1}{1+\exp(-x)},Sigmoid^{\prime}(x)&#x3D;(1-Sigmoid(x))Sigmoid(x)$，其图像如下：</p>
-<p><img src="G:\截图\QQ截图20220624122721.png" srcset="/img/loading.gif" lazyload></p>
-<h2 id="逻辑回归模型输出结果与模型可解释性"><a href="#逻辑回归模型输出结果与模型可解释性" class="headerlink" title="逻辑回归模型输出结果与模型可解释性"></a>逻辑回归模型输出结果与模型可解释性</h2><ul>
+<p><span
+class="math inline">\(Sigmoid(x)=\frac{1}{1+\exp(-x)},Sigmoid^{\prime}(x)=(1-Sigmoid(x))Sigmoid(x)\)</span>，其图像如下：</p>
+<p><img src="G:\截图\QQ截图20220624122721.png" srcset="/img/loading.gif" lazyload /></p>
+<h2
+id="逻辑回归模型输出结果与模型可解释性">逻辑回归模型输出结果与模型可解释性</h2>
+<ul>
 <li>连续型输出结果转化为分类预测结果</li>
 </ul>
-<p>对于逻辑回归输出的(0,1)之间的连续型数值，我们只需要确定一个“阈值”，就可以将其转化为二分类的类别判别结果。通常来说，这个阈值是0.5，即以0.5为界，调整模型输出结果：<br>$$<br>\begin{equation}<br>y_{cla}&#x3D;\left{<br>\begin{aligned}<br>0, y&lt;0.5 \<br>1, y≥0.5<br>\end{aligned}<br>\right.<br>\end{equation}<br>$$<br>而有时候逻辑回归当$f1_score$等作为分类评价指标可以将阈值进行调整。</p>
+<p>对于逻辑回归输出的(0,1)之间的连续型数值，我们只需要确定一个“阈值”，就可以将其转化为二分类的类别判别结果。通常来说，这个阈值是0.5，即以0.5为界，调整模型输出结果：
+<span class="math display">\[
+\begin{equation}
+y_{cla}=\left\{
+\begin{aligned}
+0, y&lt;0.5 \\
+1, y≥0.5
+\end{aligned}
+\right.
+\end{equation}
+\]</span> 而有时候逻辑回归当<span
+class="math inline">\(f1\_score\)</span>等作为分类评价指标可以将阈值进行调整。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#借助sklearn中的Logisticregression来构建带有阈值移动的评估器</span><br><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression<br><span class="hljs-keyword">from</span> sklearn.base <span class="hljs-keyword">import</span> BaseEstimator,TransformerMixin<br><span class="hljs-keyword">class</span> <span class="hljs-title class_">logistic_threshold</span>(BaseEstimator,TransformerMixin):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,penalty=<span class="hljs-string">&quot;l2&quot;</span>,C=<span class="hljs-number">1.0</span>,solver=<span class="hljs-string">&quot;lbfgs&quot;</span>,max_iter=<span class="hljs-built_in">int</span>(<span class="hljs-params"><span class="hljs-number">1e8</span></span>),l1_ratio=<span class="hljs-literal">None</span>,class_weight=<span class="hljs-literal">None</span>,thr=<span class="hljs-number">0.5</span></span>):<br>        self.penalty = penalty<br>        self.C = C<br>        self.solver = solver<br>        self.max_iter = max_iter<br>        self.l1_ratio = l1_ratio<br>        self.class_weight = class_weight<br>        self.thr = thr<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">fit</span>(<span class="hljs-params">self,X,y</span>):<br>        clf =  			    LogisticRegression(slef.penalty,self.C,self.solver,self.max_iter,self.l1_ratio,self.class_weight).fit(X,y)<br>        self.coef_ = clf.coef_<br>        self.clf = clf<br>        <span class="hljs-keyword">return</span> self<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">predict</span>(<span class="hljs-params">self,X</span>):<br>        res = (self.clf.predict_proba(X)[:,<span class="hljs-number">1</span>]&gt;self.thr)*<span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> res<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>逻辑回归输出结果(y)是否是概率</li>
 </ul>
-<p>决定y是否是概率的核心因素，不是模型本身，而是建模流程。<br>  逻辑斯蒂本身也有对应的概率分布，因此输入的自变量其实是可以视作随机变量的，但前提是需要满足一定的分布要求。如果逻辑回归的建模流程遵照数理统计方法的一般建模流程，即自变量的分布（或者转化之后的分布）满足一定要求（通过检验），则最终模型输出结果就是严格意义上的概率取值。而如果是遵照机器学习建模流程进行建模，在为对自变量进行假设检验下进行模型构建，则由于自变量分布不一定满足条件，因此输出结果不一定为严格意义上的概率。</p>
-<p>而我们基本都采用机器学习建模流程进行逻辑回归的构建，因此对于模型输出结果y，其实并不一定是严格意义上的概率。不过在目前大多数使用场景中，由于大家希望能够用到模型本身的可解释性，因此还是会将模型结果解读为1发生的概率。尽管这并不是一个严谨的做法，但在机器学习整体的“实证”倾向下，只要业务方接受这种做法、并且能够一定程度指导业务，我们就可以将其解读为概率。 我们将逻辑回归输出结果看成近似概率值。</p>
-<h2 id="sklearn中的逻辑回归"><a href="#sklearn中的逻辑回归" class="headerlink" title="sklearn中的逻辑回归"></a>sklearn中的逻辑回归</h2><ul>
+<p>决定y是否是概率的核心因素，不是模型本身，而是建模流程。
+  逻辑斯蒂本身也有对应的概率分布，因此输入的自变量其实是可以视作随机变量的，但前提是需要满足一定的分布要求。如果逻辑回归的建模流程遵照数理统计方法的一般建模流程，即自变量的分布（或者转化之后的分布）满足一定要求（通过检验），则最终模型输出结果就是严格意义上的概率取值。而如果是遵照机器学习建模流程进行建模，在为对自变量进行假设检验下进行模型构建，则由于自变量分布不一定满足条件，因此输出结果不一定为严格意义上的概率。</p>
+<p>而我们基本都采用机器学习建模流程进行逻辑回归的构建，因此对于模型输出结果y，其实并不一定是严格意义上的概率。不过在目前大多数使用场景中，由于大家希望能够用到模型本身的可解释性，因此还是会将模型结果解读为1发生的概率。尽管这并不是一个严谨的做法，但在机器学习整体的“实证”倾向下，只要业务方接受这种做法、并且能够一定程度指导业务，我们就可以将其解读为概率。
+我们将逻辑回归输出结果看成近似概率值。</p>
+<h2 id="sklearn中的逻辑回归">sklearn中的逻辑回归</h2>
+<ul>
 <li>正则化(Regularization)</li>
 </ul>
-<p><img src="G:\截图\QQ截图20220624131440.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="G:\截图\QQ截图20220624131440.png" srcset="/img/loading.gif" lazyload /></p>
 <p>上述为sklearn官方解释可以看出sklearn中是默认进行正则化，每个式子的前面部分为结构风险项（正则化项）,后面部分为损失函数经验风险项。当我们不想进行正则化的时候可以控制C很大。</p>
 <table>
+
 <thead>
-<tr>
+<tr class="header">
 <th>参数</th>
 <th>解释</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr class="odd">
 <td>penalty</td>
 <td>正则化项</td>
 </tr>
-<tr>
+<tr class="even">
 <td>dual</td>
 <td>是否求解对偶问题*</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>tol</td>
 <td>迭代停止条件：两轮迭代损失值差值小于tol时，停止迭代</td>
 </tr>
-<tr>
+<tr class="even">
 <td>C</td>
 <td>经验风险和结构风险在损失函数中的权重</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>fit_intercept</td>
 <td>线性方程中是否包含截距项</td>
 </tr>
-<tr>
+<tr class="even">
 <td>intercept_scaling</td>
 <td>相当于此前讨论的特征最后一列全为1的列，当使用liblinear求解参数时用于捕获截距</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>class_weight</td>
 <td>各类样本权重*</td>
 </tr>
-<tr>
+<tr class="even">
 <td>random_state</td>
 <td>随机数种子</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>solver</td>
 <td>损失函数求解方法*</td>
 </tr>
-<tr>
+<tr class="even">
 <td>max_iter</td>
 <td>求解参数时最大迭代次数，迭代过程满足max_iter或tol其一即停止迭代</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>multi_class</td>
 <td>多分类问题时求解方法*</td>
 </tr>
-<tr>
+<tr class="even">
 <td>verbose</td>
 <td>是否输出任务进程</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>warm_start</td>
 <td>是否使用上次训练结果作为本次运行初始参数</td>
 </tr>
-<tr>
+<tr class="even">
 <td>l1_ratio</td>
-<td>当采用弹性网正则化时，$l1$正则项权重，就是损失函数中的$\rho$</td>
+<td>当采用弹性网正则化时，<span
+class="math inline">\(l1\)</span>正则项权重，就是损失函数中的<span
+class="math inline">\(\rho\)</span></td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <ul>
 <li>dual：是否求解对偶问题</li>
 </ul>
@@ -400,49 +439,99 @@ color="100,149,237" opacity='0.8' zIndex="-2" count="200" src="//cdn.bootcss.com
 <ul>
 <li>class_weight:各类样本权重</li>
 </ul>
-<p>  class_weight其实代表各类样本在进行损失函数计算时的数值权重，例如假设一个二分类问题，0、1两类的样本比例是2:1，此时可以输入一个字典类型对象用于说明两类样本在进行损失值计算时的权重，例如输入:{0:1, 1:3}，则代表1类样本的每一条数据在进行损失函数值的计算时都会在原始数值上*3。而当我们将该参数选为<code>balanced</code>时，则会自动将这个比例调整为真实样本比例的反比，以达到平衡的效果。</p>
+<p>  class_weight其实代表各类样本在进行损失函数计算时的数值权重，例如假设一个二分类问题，0、1两类的样本比例是2:1，此时可以输入一个字典类型对象用于说明两类样本在进行损失值计算时的权重，例如输入:{0:1,
+1:3}，则代表1类样本的每一条数据在进行损失函数值的计算时都会在原始数值上*3。而当我们将该参数选为<code>balanced</code>时，则会自动将这个比例调整为真实样本比例的反比，以达到平衡的效果。</p>
 <ul>
 <li>solver：损失函数求解方法</li>
 </ul>
 <p>  其实除了最小二乘法和梯度下降以外，还有非常多的关于损失函数的求解方法，而选择损失函数的参数，就是solver参数。</p>
 <p>  而当前损失函数到底采用何种优化方法进行求解，其实最终目的是希望能够更快（计算效率更高）更好（准确性更高）的来进行求解，而硬性的约束条件是损失函数的形态，此外则是用户自行选择的空间。下面为官方给出的solver列表</p>
-<p><img src="G:\截图\QQ截图20220624131953.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="G:\截图\QQ截图20220624131953.png" srcset="/img/loading.gif" lazyload /></p>
 <ul>
 <li>multi_class：选用何种方法进行多分类问题求解</li>
 </ul>
 <p>可选OVR和MVM，当然默认情况是auto，此时模型会优先根据惩罚项和solver选择OVR还是MVM，但一般来说，MVM效果会好于OVR。</p>
-<h2 id="利用极大似然估计进行参数估计"><a href="#利用极大似然估计进行参数估计" class="headerlink" title="利用极大似然估计进行参数估计"></a>利用极大似然估计进行参数估计</h2><p>逻辑回归模型如下：<br>$$<br>y &#x3D; \frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\quad \hat{w}^{T}&#x3D;(w_1,w_2,\dots,w_n,b)^{T},,\hat{x} &#x3D;(x_1,x_2,\dots,x_n,1)^{T}\<br>固定一组\hat{w}^{T}和\hat{x}得:\quad<br>p(y&#x3D;1\vert\hat{w}^{T},\hat{x}) &#x3D; \frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\<br>\phantom{固定一组\hat{w}^{T}和\hat{x}得:::::}p(y&#x3D;1\vert\hat{w}^{T},\hat{x}) &#x3D; \frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\<br>$$<br>令$p_1(\hat{w}^{T},\hat{x})&#x3D;p(y&#x3D;1\vert\hat{w}^{T},\hat{x}),p_0(\hat{w}^{T},\hat{x})&#x3D;p(y&#x3D;0\vert\hat{w}^{T},\hat{x})$得：$p(y&#x3D;y_i)&#x3D;p_1^{y_i}(\hat{w}^{T},\hat{x})\cdot p_0^{1-y_i}(\hat{w}^{T},\hat{x})$</p>
-<p>则似然函数为$L(y_i;\hat{w}^{T},\hat{x})&#x3D;\prod_{i&#x3D;1}^{n}p(y&#x3D;y_i)&#x3D;\prod_{i&#x3D;1}^{n}p_1^{y_i}(\hat{w}^{T},\hat{x})\cdot p_0^{1-y_i}(\hat{w}^{T},\hat{x})$</p>
-<p>进而$\ln L&#x3D;\sum_{i&#x3D;1}^{n}(\ln p_1^{y_i}(\hat{w}^{T},\hat{x})+\ln p_0^{1-y_i}(\hat{w}^{T},\hat{x}))&#x3D;\sum_{i&#x3D;1}^{n}(y_i\ln p_1(\hat{w}^{T},\hat{x})+(1-y_i)\ln p_0(\hat{w}^{T},\hat{x}))$</p>
+<h2 id="利用极大似然估计进行参数估计">利用极大似然估计进行参数估计</h2>
+<p>逻辑回归模型如下： <span class="math display">\[
+y = \frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\quad
+\hat{w}^{T}=(w_1,w_2,\dots,w_n,b)^{T}\,,\hat{x}
+=(x_1,x_2,\dots,x_n,1)^{T}\\
+固定一组\hat{w}^{T}和\hat{x}得:\quad
+p(y=1\vert\hat{w}^{T},\hat{x}) =
+\frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\\
+\phantom{固定一组\hat{w}^{T}和\hat{x}得:::::}p(y=1\vert\hat{w}^{T},\hat{x})
+= \frac{1}{1+\exp(-\hat{w}^{T}\cdot\hat{x})}\\
+\]</span> 令<span
+class="math inline">\(p_1(\hat{w}^{T},\hat{x})=p(y=1\vert\hat{w}^{T},\hat{x}),p_0(\hat{w}^{T},\hat{x})=p(y=0\vert\hat{w}^{T},\hat{x})\)</span>得：<span
+class="math inline">\(p(y=y_i)=p_1^{y_i}(\hat{w}^{T},\hat{x})\cdot
+p_0^{1-y_i}(\hat{w}^{T},\hat{x})\)</span></p>
+<p>则似然函数为<span
+class="math inline">\(L(y_i;\hat{w}^{T},\hat{x})=\prod_{i=1}^{n}p(y=y_i)=\prod_{i=1}^{n}p_1^{y_i}(\hat{w}^{T},\hat{x})\cdot
+p_0^{1-y_i}(\hat{w}^{T},\hat{x})\)</span></p>
+<p>进而<span class="math inline">\(\ln L=\sum_{i=1}^{n}(\ln
+p_1^{y_i}(\hat{w}^{T},\hat{x})+\ln
+p_0^{1-y_i}(\hat{w}^{T},\hat{x}))=\sum_{i=1}^{n}(y_i\ln
+p_1(\hat{w}^{T},\hat{x})+(1-y_i)\ln
+p_0(\hat{w}^{T},\hat{x}))\)</span></p>
 <p>通过一系列数学过程可以证明，通过极大似然估计构建的损失函数是凸函数，此时我们可以采用导数为0联立方程组的方式进行求解，这也是极大似然估计对参数求解的一般方法。但这种方法会涉及大量的导数运算、方程组求解等，并不适用于大规模甚至是超大规模数值运算，因此，在机器学习领域，我们通常会采用一些更加通用的优化方法对逻辑回归的损失函数进行求解，通常来说是牛顿法或者梯度下降算法，其中，梯度下降算法是机器学习中最为通用的求解损失函数的优化算法.</p>
-<p>为了方便求最小值将其转化为:<br>$$<br>\ln L&#x3D;-\sum_{i&#x3D;1}^{n}(y_i\ln p_1(\hat{w}^{T},\hat{x})+(1-y_i)\ln p_0(\hat{w}^{T},\hat{x}))<br>$$</p>
-<h2 id="熵、相对熵与交叉熵"><a href="#熵、相对熵与交叉熵" class="headerlink" title="熵、相对熵与交叉熵"></a>熵、相对熵与交叉熵</h2><p>###熵</p>
-<p>通常我们用熵（entropy）来表示随机变量不确定性的度量，或者说系统混乱程度、信息混乱程度。熵的计算公式如下：<br>$$<br>entrop(X) &#x3D; -\sum_{i&#x3D;1}^{n}p(x_i)log(x_i)<br>$$<br>可以证明，熵的计算结果在[0,1]之间，并且熵值越大，系统越混乱、信息越混乱。</p>
-<h3 id="相对熵和交叉熵"><a href="#相对熵和交叉熵" class="headerlink" title="相对熵和交叉熵"></a>相对熵和交叉熵</h3><p>相对熵也被称为Kullback-Leibler散度（KL散度）或者信息散度（information divergence）。通常用来衡量两个随机变量分布的差异性。假设对同一个随机变量X，有两个单独的概率分布P(x)和Q(x)，当X是离散变量时，我们可以通过如下相对熵计算公式来衡量二者差异：<br>$$<br>D_{KL}(P\vert\vert Q) &#x3D; \sum_{i&#x3D;1}^{n}P(x_i)log(\frac{P(x_i)}{Q(x_i)})<br>$$<br>和信息熵类似，相对熵越小，代表Q(x)和P(x)越接近。</p>
-<p>从交叉熵的计算公式不难看出，这其实是一种非对称性度量，也就是$D_{KL}(P\vert\vert Q)\ne D_{KL}(Q\vert\vert P)$。从本质上来说，相对熵刻画的是用概率分布Q来刻画概率分布P的困难程度，而在机器学习领域，我们一般令Q为模型输出结果，而P为数据集标签真实结果，以此来判断模型输出结果是否足够接近真实情况。</p>
+<p>为了方便求最小值将其转化为: <span class="math display">\[
+\ln L=-\sum_{i=1}^{n}(y_i\ln p_1(\hat{w}^{T},\hat{x})+(1-y_i)\ln
+p_0(\hat{w}^{T},\hat{x}))
+\]</span></p>
+<h2 id="熵相对熵与交叉熵">熵、相对熵与交叉熵</h2>
+<p>###熵</p>
+<p>通常我们用熵（entropy）来表示随机变量不确定性的度量，或者说系统混乱程度、信息混乱程度。熵的计算公式如下：
+<span class="math display">\[
+entrop(X) = -\sum_{i=1}^{n}p(x_i)log(x_i)
+\]</span>
+可以证明，熵的计算结果在[0,1]之间，并且熵值越大，系统越混乱、信息越混乱。</p>
+<h3 id="相对熵和交叉熵">相对熵和交叉熵</h3>
+<p>相对熵也被称为Kullback-Leibler散度（KL散度）或者信息散度（information
+divergence）。通常用来衡量两个随机变量分布的差异性。假设对同一个随机变量X，有两个单独的概率分布P(x)和Q(x)，当X是离散变量时，我们可以通过如下相对熵计算公式来衡量二者差异：
+<span class="math display">\[
+D_{KL}(P\vert\vert Q) = \sum_{i=1}^{n}P(x_i)log(\frac{P(x_i)}{Q(x_i)})
+\]</span> 和信息熵类似，相对熵越小，代表Q(x)和P(x)越接近。</p>
+<p>从交叉熵的计算公式不难看出，这其实是一种非对称性度量，也就是<span
+class="math inline">\(D_{KL}(P\vert\vert Q)\ne D_{KL}(Q\vert\vert
+P)\)</span>。从本质上来说，相对熵刻画的是用概率分布Q来刻画概率分布P的困难程度，而在机器学习领域，我们一般令Q为模型输出结果，而P为数据集标签真实结果，以此来判断模型输出结果是否足够接近真实情况。</p>
 <ul>
-<li>Q为拟合分布P为真实分布，也被称为前向KL散度（forward KL divergence）。</li>
+<li>Q为拟合分布P为真实分布，也被称为前向KL散度（forward KL
+divergence）。</li>
 </ul>
-<p>$$<br>\begin{split}<br>D_{KL}(P\vert\vert Q) &amp;&#x3D; \sum_{i&#x3D;1}^{n}P(x_i)log(\frac{P(x_i)}{Q(x_i)})\&amp;&#x3D;\sum_{i&#x3D;1}^{n}P(x_i)log(P(x_i))-\sum_{i&#x3D;1}^{n}P(x_i)log(Q(x_i))\&amp;&#x3D;-entropy(P(X))+cross_entropy(P,Q)<br>\end{split}<br>$$</p>
-<p>对于给定数据集，其信息熵是确定的。因此，如果我们希望P、Q二者分布尽可能接近，我们就需要尽可能减少相对熵，但由于相对熵&#x3D;交叉熵-信息熵，因此我们只能力求减少交叉熵。当然，也正因如此，交叉熵可以作为衡量模型输出分布是否接近真实分布的重要度量方法。</p>
+<p><span class="math display">\[
+\begin{split}
+D_{KL}(P\vert\vert Q) &amp;=
+\sum_{i=1}^{n}P(x_i)log(\frac{P(x_i)}{Q(x_i)})\\&amp;=\sum_{i=1}^{n}P(x_i)log(P(x_i))-\sum_{i=1}^{n}P(x_i)log(Q(x_i))\\&amp;=-entropy(P(X))+cross\_entropy(P,Q)
+\end{split}
+\]</span></p>
+<p>对于给定数据集，其信息熵是确定的。因此，如果我们希望P、Q二者分布尽可能接近，我们就需要尽可能减少相对熵，但由于相对熵=交叉熵-信息熵，因此我们只能力求减少交叉熵。当然，也正因如此，交叉熵可以作为衡量模型输出分布是否接近真实分布的重要度量方法。</p>
 <p>简单总结上述过程要点：</p>
 <ul>
-<li>我们用相对熵$𝐷_{𝐾𝐿}(𝑃||𝑄),D_{KL}(P||Q)$来表示模型拟合分布Q和数据真实分布P之间的差距，相对熵越小拟合效果越好；</li>
-<li>根据计算公式(6),相对熵&#x3D;交叉熵-信息熵；</li>
+<li>我们用相对熵<span
+class="math inline">\(𝐷_{𝐾𝐿}(𝑃||𝑄)\,D_{KL}(P||Q)\)</span>来表示模型拟合分布Q和数据真实分布P之间的差距，相对熵越小拟合效果越好；</li>
+<li>根据计算公式(6),相对熵=交叉熵-信息熵；</li>
 <li>对于给定数据集，信息熵是确定的，因此我们只能通过尽可能减小交叉熵来降低相对熵；</li>
 </ul>
 <p>根据吉布斯不等式，相对熵的取值恒大于等于零，当预测分布和真实分布完全一致时相对熵取值为0，此时交叉熵等于数据信息熵，此外只要二者分布不一致，交叉熵的取值都将大于信息熵。</p>
-<h3 id="二分类交叉熵损失函数"><a href="#二分类交叉熵损失函数" class="headerlink" title="二分类交叉熵损失函数"></a>二分类交叉熵损失函数</h3><p>$$<br>binaryCE(\hat{w}) &#x3D; -\sum_{i&#x3D;1}^{n}(y_ilog(p_1(\hat{w}^{T},\hat{x}))+(1-y_i)log(p_0(\hat{w}^{T},\hat{x})))<br>$$</p>
-<h2 id="逻辑回归应用"><a href="#逻辑回归应用" class="headerlink" title="逻辑回归应用"></a>逻辑回归应用</h2><p>该数据集为Telco Customer Churn 电信用户流失预测案例</p>
+<h3 id="二分类交叉熵损失函数">二分类交叉熵损失函数</h3>
+<p><span class="math display">\[
+binaryCE(\hat{w}) =
+-\sum_{i=1}^{n}(y_ilog(p_1(\hat{w}^{T},\hat{x}))+(1-y_i)log(p_0(\hat{w}^{T},\hat{x})))
+\]</span></p>
+<h2 id="逻辑回归应用">逻辑回归应用</h2>
+<p>该数据集为Telco Customer Churn 电信用户流失预测案例</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br>sns.set_theme(style=<span class="hljs-string">&quot;darkgrid&quot;</span>)<span class="hljs-comment">#用来设置主题背景</span><br>plt.rcParams[<span class="hljs-string">&quot;font.sans-serif&quot;</span>] = [<span class="hljs-string">&quot;SimHei&quot;</span>] <span class="hljs-comment">#用来正常显示中文标签</span><br>plt.rcParams[<span class="hljs-string">&quot;axes.unicode_minus&quot;</span>] = <span class="hljs-literal">False</span> <span class="hljs-comment">#用来正常显示负号</span><br><span class="hljs-comment"># Read data</span><br>tcc = pd.read_csv(<span class="hljs-string">&#x27;WA_Fn-UseC_-Telco-Customer-Churn.csv&#x27;</span>)<br><span class="hljs-comment"># 标注连续/离散字段</span><br><span class="hljs-comment"># 离散字段</span><br>category_cols = [<span class="hljs-string">&#x27;gender&#x27;</span>, <span class="hljs-string">&#x27;SeniorCitizen&#x27;</span>, <span class="hljs-string">&#x27;Partner&#x27;</span>, <span class="hljs-string">&#x27;Dependents&#x27;</span>,<br>               <span class="hljs-string">&#x27;PhoneService&#x27;</span>, <span class="hljs-string">&#x27;MultipleLines&#x27;</span>, <span class="hljs-string">&#x27;InternetService&#x27;</span>, <span class="hljs-string">&#x27;OnlineSecurity&#x27;</span>, <span class="hljs-string">&#x27;OnlineBackup&#x27;</span>, <br>                <span class="hljs-string">&#x27;DeviceProtection&#x27;</span>, <span class="hljs-string">&#x27;TechSupport&#x27;</span>, <span class="hljs-string">&#x27;StreamingTV&#x27;</span>, <span class="hljs-string">&#x27;StreamingMovies&#x27;</span>, <span class="hljs-string">&#x27;Contract&#x27;</span>, <span class="hljs-string">&#x27;PaperlessBilling&#x27;</span>,<br>                <span class="hljs-string">&#x27;PaymentMethod&#x27;</span>]<br><br><span class="hljs-comment"># 连续字段</span><br>numeric_cols = [<span class="hljs-string">&#x27;tenure&#x27;</span>, <span class="hljs-string">&#x27;MonthlyCharges&#x27;</span>, <span class="hljs-string">&#x27;TotalCharges&#x27;</span>]<br><br><span class="hljs-comment"># 标签</span><br>target = <span class="hljs-string">&#x27;Churn&#x27;</span><br><br><span class="hljs-comment"># ID列</span><br>ID_col = <span class="hljs-string">&#x27;customerID&#x27;</span><br><br><span class="hljs-comment"># 验证是否划分能完全</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(category_cols) + <span class="hljs-built_in">len</span>(numeric_cols) + <span class="hljs-number">2</span> == tcc.shape[<span class="hljs-number">1</span>]<br><span class="hljs-comment">#Verify whether the ID column is duplicate</span><br>tcc[ID_col].nunique() == tcc.shape[<span class="hljs-number">0</span>]<br><span class="hljs-comment">#Verify whether have the explict missing values</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">missing</span>(<span class="hljs-params">df</span>):<br>    <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    Caculate the proportion of the missing value</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    &#x27;&#x27;&#x27;</span><br>    missing_number = df.isnull().<span class="hljs-built_in">sum</span>().sort_values(ascending=<span class="hljs-literal">False</span>) <span class="hljs-comment">#decending</span><br>    missing_per = (df.isnull().<span class="hljs-built_in">sum</span>()/df.count()).sort_values(ascending=<span class="hljs-literal">False</span>) <span class="hljs-comment">#decending</span><br>    missing_df = pd.concat([missing_number,missing_per],axis=<span class="hljs-number">1</span>,keys=[<span class="hljs-string">&quot;Missing_number&quot;</span>,<span class="hljs-string">&quot;Missing_per&quot;</span>])<br>    <span class="hljs-keyword">return</span> missing_df<br><span class="hljs-comment">#Verify whether have the discrete explict missing values</span><br><span class="hljs-keyword">for</span> feature <span class="hljs-keyword">in</span> category_cols:<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;:&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(feature,tcc[feature].unique()))<br> <span class="hljs-comment">#Verify whether have the continuous explict missing values</span><br>tcc[numeric_cols].astype(<span class="hljs-built_in">float</span>)<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">find_index</span>(<span class="hljs-params">data_col,value</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    Verify the first occurance of the given value in the given column,return -1 if there is none.</span><br><span class="hljs-string">    param data_col:given column</span><br><span class="hljs-string">    param value:given value</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    val_lst = [value]<br>    <span class="hljs-keyword">if</span> data_col.isin(val_lst).<span class="hljs-built_in">sum</span>() == <span class="hljs-number">0</span>:<br>        <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span><br>    <span class="hljs-keyword">else</span>:<br>        res = data_col.isin(val_lst).idxmax()<br>    <span class="hljs-keyword">return</span> res<br><span class="hljs-keyword">for</span> feature <span class="hljs-keyword">in</span> numeric_cols:<br>    <span class="hljs-built_in">print</span>(find_index(tcc[feature],<span class="hljs-string">&quot; &quot;</span>))<br>tcc[<span class="hljs-string">&quot;TotalCharges&quot;</span>] = tcc[<span class="hljs-string">&quot;TotalCharges&quot;</span>].apply(<span class="hljs-keyword">lambda</span> x:x <span class="hljs-keyword">if</span> x!=<span class="hljs-string">&quot; &quot;</span><span class="hljs-keyword">else</span> np.nan).astype(<span class="hljs-built_in">float</span>)<br>tcc[<span class="hljs-string">&quot;MonthlyCharges&quot;</span>] = tcc[<span class="hljs-string">&quot;MonthlyCharges&quot;</span>].astype(<span class="hljs-built_in">float</span>)<br>tcc[<span class="hljs-string">&quot;TotalCharges&quot;</span>]=tcc[<span class="hljs-string">&quot;TotalCharges&quot;</span>].fillna(<span class="hljs-number">0</span>)<br><span class="hljs-comment">#Outlier detection</span><br>plt.figure(figsize=(<span class="hljs-number">16</span>, <span class="hljs-number">6</span>), dpi=<span class="hljs-number">200</span>)<br>plt.subplot(<span class="hljs-number">121</span>)<br>plt.boxplot(tcc[<span class="hljs-string">&#x27;MonthlyCharges&#x27;</span>])<br>plt.xlabel(<span class="hljs-string">&#x27;MonthlyCharges&#x27;</span>)<br>plt.subplot(<span class="hljs-number">122</span>)<br>plt.boxplot(tcc[<span class="hljs-string">&#x27;TotalCharges&#x27;</span>])<br>plt.xlabel(<span class="hljs-string">&#x27;TotalCharges&#x27;</span>)<br>tcc[target].replace(to_replace=<span class="hljs-string">&quot;Yes&quot;</span>,value=<span class="hljs-number">1</span>,inplace=<span class="hljs-literal">True</span>)<br>tcc[target].replace(to_replace=<span class="hljs-string">&quot;No&quot;</span>,value=<span class="hljs-number">0</span>,inplace=<span class="hljs-literal">True</span>)<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br>train,test = train_test_split(tcc,random_state=<span class="hljs-number">666</span>,test_size=<span class="hljs-number">0.3</span>)<br>X_train = train.drop(columns=[ID_col,target]).copy()<br>y_train = train[target].copy()<br>X_test = test.drop(columns=[ID_col,target]).copy()<br>y_test = test[target].copy()<br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> OneHotEncoder,KBinsDiscretizer,StandardScaler<br><span class="hljs-keyword">from</span> sklearn.compose <span class="hljs-keyword">import</span> ColumnTransformer<br><span class="hljs-keyword">from</span> sklearn.pipeline <span class="hljs-keyword">import</span> make_pipeline<br><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV<br>logistic_pre = ColumnTransformer([(<span class="hljs-string">&quot;cat&quot;</span>,OneHotEncoder(drop=<span class="hljs-string">&quot;if_binary&quot;</span>),category_cols),(<span class="hljs-string">&quot;num&quot;</span>,<span class="hljs-string">&quot;passthrough&quot;</span>,numeric_cols)])<br>logistic_model = LogisticRegression(max_iter=<span class="hljs-built_in">int</span>(<span class="hljs-number">1e8</span>))<br>logistic_pipe = make_pipeline(logistic_pre,logistic_model)<br>num_sel = [<span class="hljs-string">&quot;passthrough&quot;</span>,StandardScaler(),KBinsDiscretizer(n_bins=<span class="hljs-number">3</span>,encode=<span class="hljs-string">&quot;ordinal&quot;</span>,strategy=<span class="hljs-string">&quot;kmeans&quot;</span>)]<br>logistic_param = [&#123;<span class="hljs-string">&quot;columntransformer__num&quot;</span>:num_sel<br>                   ,<span class="hljs-string">&quot;logisticregression__penalty&quot;</span>:[<span class="hljs-string">&quot;l1&quot;</span>]<br>                   ,<span class="hljs-string">&quot;logisticregression__C&quot;</span>:np.arange(<span class="hljs-number">0.1</span>,<span class="hljs-number">2.1</span>,<span class="hljs-number">0.1</span>).tolist()<br>                   ,<span class="hljs-string">&quot;logisticregression__solver&quot;</span>:[<span class="hljs-string">&quot;saga&quot;</span>]&#125;<br>                 ,&#123;<span class="hljs-string">&quot;columntransformer__num&quot;</span>:num_sel<br>                   ,<span class="hljs-string">&quot;logisticregression__penalty&quot;</span>:[<span class="hljs-string">&quot;l2&quot;</span>]<br>                   ,<span class="hljs-string">&quot;logisticregression__C&quot;</span>:np.arange(<span class="hljs-number">0.1</span>,<span class="hljs-number">2.1</span>,<span class="hljs-number">0.1</span>).tolist()<br>                   ,<span class="hljs-string">&quot;logisticregression__solver&quot;</span>:[<span class="hljs-string">&#x27;lbfgs&#x27;</span>, <span class="hljs-string">&#x27;newton-cg&#x27;</span>, <span class="hljs-string">&#x27;sag&#x27;</span>, <span class="hljs-string">&#x27;saga&#x27;</span>]&#125;]<br>logistic_search = GridSearchCV(estimator=logistic_pipe,param_grid=logistic_param,n_jobs=-<span class="hljs-number">1</span>)<br><span class="hljs-keyword">import</span> time<br>s = time.time()<br>logistic_search.fit(X_train,y_train)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;&#123;&#125;&quot;</span>.<span class="hljs-built_in">format</span>(time.time()-s))<br></code></pre></td></tr></table></figure>
-
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">logit_threshold</span>(BaseEstimator, TransformerMixin):<br>    <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, penalty=<span class="hljs-string">&#x27;l2&#x27;</span>, C=<span class="hljs-number">1.0</span>, max_iter=<span class="hljs-number">1e8</span>, solver=<span class="hljs-string">&#x27;lbfgs&#x27;</span>, l1_ratio=<span class="hljs-literal">None</span>, class_weight=<span class="hljs-literal">None</span>, thr=<span class="hljs-number">0.5</span></span>):<br>        self.penalty = penalty<br>        self.C = C<br>        self.max_iter = max_iter<br>        self.solver = solver<br>        self.l1_ratio = l1_ratio<br>        self.thr = thr<br>        self.class_weight = class_weight<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">fit</span>(<span class="hljs-params">self, X, y</span>):<br>        clf = LogisticRegression(penalty = self.penalty, <br>                                 C = self.C, <br>                                 solver = self.solver, <br>                                 l1_ratio = self.l1_ratio,<br>                                 class_weight=self.class_weight, <br>                                 max_iter=self.max_iter)<br>        clf.fit(X, y)<br>        self.coef_ = clf.coef_<br>        self.clf = clf<br>        <span class="hljs-keyword">return</span> self<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">predict</span>(<span class="hljs-params">self, X</span>):<br>        res = (self.clf.predict_proba(X)[:, <span class="hljs-number">1</span>]&gt;=self.thr) * <span class="hljs-number">1</span><br>        <span class="hljs-keyword">return</span> res<br> <span class="hljs-comment"># 设置转化器流</span><br>logistic_pre = ColumnTransformer([<br>    (<span class="hljs-string">&#x27;cat&#x27;</span>, preprocessing.OneHotEncoder(drop=<span class="hljs-string">&#x27;if_binary&#x27;</span>), category_cols), <br>    (<span class="hljs-string">&#x27;num&#x27;</span>, <span class="hljs-string">&#x27;passthrough&#x27;</span>, numeric_cols)<br>])<br><br>num_pre = [<span class="hljs-string">&#x27;passthrough&#x27;</span>, preprocessing.StandardScaler(), preprocessing.KBinsDiscretizer(n_bins=<span class="hljs-number">3</span>, encode=<span class="hljs-string">&#x27;ordinal&#x27;</span>, strategy=<span class="hljs-string">&#x27;kmeans&#x27;</span>)]<br><br><span class="hljs-comment"># 实例化逻辑回归评估器</span><br>logistic_model = logit_threshold(max_iter=<span class="hljs-built_in">int</span>(<span class="hljs-number">1e8</span>))<br><br><span class="hljs-comment"># 设置机器学习流</span><br>logistic_pipe = make_pipeline(logistic_pre, logistic_model)<br><br><span class="hljs-comment"># 设置超参数空间</span><br>logistic_param = [<br>    &#123;<span class="hljs-string">&#x27;columntransformer__num&#x27;</span>:num_pre, <span class="hljs-string">&#x27;logit_threshold__thr&#x27;</span>: np.arange(<span class="hljs-number">0.1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.1</span>).tolist(), <span class="hljs-string">&#x27;logit_threshold__penalty&#x27;</span>: [<span class="hljs-string">&#x27;l1&#x27;</span>], <span class="hljs-string">&#x27;logit_threshold__C&#x27;</span>: np.arange(<span class="hljs-number">0.1</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>).tolist(), <span class="hljs-string">&#x27;logit_threshold__solver&#x27;</span>: [<span class="hljs-string">&#x27;saga&#x27;</span>]&#125;, <br>    &#123;<span class="hljs-string">&#x27;columntransformer__num&#x27;</span>:num_pre, <span class="hljs-string">&#x27;logit_threshold__thr&#x27;</span>: np.arange(<span class="hljs-number">0.1</span>, <span class="hljs-number">1</span>, <span class="hljs-number">0.1</span>).tolist(), <span class="hljs-string">&#x27;logit_threshold__penalty&#x27;</span>: [<span class="hljs-string">&#x27;l2&#x27;</span>], <span class="hljs-string">&#x27;logit_threshold__C&#x27;</span>: np.arange(<span class="hljs-number">0.1</span>, <span class="hljs-number">1.1</span>, <span class="hljs-number">0.1</span>).tolist(), <span class="hljs-string">&#x27;logit_threshold__solver&#x27;</span>: [<span class="hljs-string">&#x27;lbfgs&#x27;</span>, <span class="hljs-string">&#x27;newton-cg&#x27;</span>, <span class="hljs-string">&#x27;sag&#x27;</span>, <span class="hljs-string">&#x27;saga&#x27;</span>]&#125;, <br>]<br><br><span class="hljs-comment"># 实例化网格搜索评估器</span><br>logistic_search_f1 = GridSearchCV(estimator = logistic_pipe,<br>                                  param_grid = logistic_param,<br>                                  scoring=<span class="hljs-string">&#x27;f1&#x27;</span>,<br>                                  n_jobs = <span class="hljs-number">12</span>)<br><br>s = time.time()<br>logistic_search_f1.fit(X_train, y_train)<br><span class="hljs-built_in">print</span>(time.time()-s, <span class="hljs-string">&quot;s&quot;</span>)<br></code></pre></td></tr></table></figure>
-
-<h2 id="逻辑回归模型解释"><a href="#逻辑回归模型解释" class="headerlink" title="逻辑回归模型解释"></a>逻辑回归模型解释</h2><p>对于逻辑回归的模型解释，核心是需要观察线性方程中自变量的系数，通过系数大小可以判断特征重要性，并且系数的具体数值也能表示因变量如何伴随自变量变化而变化。</p>
+<h2 id="逻辑回归模型解释">逻辑回归模型解释</h2>
+<p>对于逻辑回归的模型解释，核心是需要观察线性方程中自变量的系数，通过系数大小可以判断特征重要性，并且系数的具体数值也能表示因变量如何伴随自变量变化而变化。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#查看逻辑回归系数</span><br>coe = logistic_search.best_estimator_.named_steps[<span class="hljs-string">&#x27;logit_threshold&#x27;</span>].coef_<br>coe = coe.flatten()<br>coe<br><span class="hljs-comment"># 定位独热编码转化器</span><br>tf = logistic_search.best_estimator_.named_steps[<span class="hljs-string">&#x27;columntransformer&#x27;</span>].named_transformers_[<span class="hljs-string">&#x27;cat&#x27;</span>]<br>tf<br><span class="hljs-keyword">def</span> <span class="hljs-title function_">cate_colName</span>(<span class="hljs-params">Transformer, category_cols, drop=<span class="hljs-string">&#x27;if_binary&#x27;</span></span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    离散字段独热编码后字段名创建函数</span><br><span class="hljs-string">    </span><br><span class="hljs-string">    :param Transformer: 独热编码转化器</span><br><span class="hljs-string">    :param category_cols: 输入转化器的离散变量</span><br><span class="hljs-string">    :param drop: 独热编码转化器的drop参数</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <br>    cate_cols_new = []<br>    col_value = Transformer.categories_<br>    <br>    <span class="hljs-keyword">for</span> i, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(category_cols):<br>        <span class="hljs-keyword">if</span> (drop == <span class="hljs-string">&#x27;if_binary&#x27;</span>) &amp; (<span class="hljs-built_in">len</span>(col_value[i]) == <span class="hljs-number">2</span>):<br>            cate_cols_new.append(j)<br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-keyword">for</span> f <span class="hljs-keyword">in</span> col_value[i]:<br>                feature_name = j + <span class="hljs-string">&#x27;_&#x27;</span> + f<br>                cate_cols_new.append(feature_name)<br>    <span class="hljs-keyword">return</span>(cate_cols_new)<br><span class="hljs-comment"># 转化后离散变量列名称</span><br>category_cols_new = cate_colName(tf, category_cols)<br><br><span class="hljs-comment"># 所有字段名称</span><br>cols_new = category_cols_new + numeric_cols<br><br><span class="hljs-comment"># 查看特征名称数量和特征系数数量是否一致</span><br><span class="hljs-keyword">assert</span> <span class="hljs-built_in">len</span>(cols_new) == <span class="hljs-built_in">len</span>(coe)<br></code></pre></td></tr></table></figure>
-
-<p>对于$\ln\frac{y}{1-y}&#x3D;\hat{w}^{T}\cdot\hat{x}&#x3D;w_1x_1+w_2x_2+\dots+w_nx_n+b$而言每个$x_i$的变化会不同程度的影响对数几率的变化。</p>
-<p>以$\ln\frac{y}{1-y}&#x3D;2x_1-x_2$为例$x_1$每增长1,$y$判别为正例的对数几率就增加2，概率就增加0.4</p>
+<p>对于<span
+class="math inline">\(\ln\frac{y}{1-y}=\hat{w}^{T}\cdot\hat{x}=w_1x_1+w_2x_2+\dots+w_nx_n+b\)</span>而言每个<span
+class="math inline">\(x_i\)</span>的变化会不同程度的影响对数几率的变化。</p>
+<p>以<span
+class="math inline">\(\ln\frac{y}{1-y}=2x_1-x_2\)</span>为例<span
+class="math inline">\(x_1\)</span>每增长1,<span
+class="math inline">\(y\)</span>判别为正例的对数几率就增加2，概率就增加0.4</p>
 <p>此外，还可以根据系数来判别特征重要性。</p>
 
                 
@@ -591,12 +680,6 @@ color="100,149,237" opacity='0.8' zIndex="-2" count="200" src="//cdn.bootcss.com
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -770,40 +853,6 @@ color="100,149,237" opacity='0.8' zIndex="-2" count="200" src="//cdn.bootcss.com
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
