@@ -1,0 +1,1450 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="迅">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言从今天起就步入MATLAB的学习了，这也是建模的开端，接下来的日子里仍然会保持Python语言的更新（PS：在博文中我会对MATLAB简称为MAT，软件版本为MATLAB R2018a）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MATLAB基础知识">
+<meta property="og:url" content="http://xungirl.cn/2021/10/13/MATLAB%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言从今天起就步入MATLAB的学习了，这也是建模的开端，接下来的日子里仍然会保持Python语言的更新（PS：在博文中我会对MATLAB简称为MAT，软件版本为MATLAB R2018a）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-13T14:22:22.000Z">
+<meta property="article:modified_time" content="2022-06-05T03:34:22.448Z">
+<meta property="article:author" content="迅">
+<meta property="article:tag" content="MATLAB">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>MATLAB基础知识 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"xungirl.cn","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>讯の迅</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="MATLAB基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-10-13 22:22" pubdate>
+          2021年10月13日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">MATLAB基础知识</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>从今天起就步入MATLAB的学习了，这也是建模的开端，接下来的日子里仍然会保持Python语言的更新（PS：在博文中我会对MATLAB简称为MAT，软件版本为MATLAB R2018a）</p>
+<hr>
+<span id="more"></span>
+
+<h1 id="MAT命令的组成"><a href="#MAT命令的组成" class="headerlink" title="MAT命令的组成"></a>MAT命令的组成</h1><h2 id="一、基本的符号-“-gt-gt-”"><a href="#一、基本的符号-“-gt-gt-”" class="headerlink" title="一、基本的符号  “&gt;&gt;”"></a>一、基本的符号  “&gt;&gt;”</h2><p>命令行“头首”的”&gt;&gt;”是“指令输入提示符”，它是由软件自动生成的。     </p>
+<p>即打开MAT后就会看到</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt;<br>&gt;&gt;<br>&gt;&gt;<br></code></pre></td></tr></table></figure>
+
+<p>“&gt;&gt;”为运算提示符，表示软件准备就绪，在此输入命令并“回车”后就可以运行，相信大家在Python里见过，这里就不过多解释了。  </p>
+<h2 id="二、功能符号"><a href="#二、功能符号" class="headerlink" title="二、功能符号"></a>二、功能符号</h2><table>
+<thead>
+<tr>
+<th align="center">标点</th>
+<th align="center">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>:</code></td>
+<td align="center">具有多种功能</td>
+</tr>
+<tr>
+<td align="center"><code>;</code></td>
+<td align="center">区分行以及取消运行显示</td>
+</tr>
+<tr>
+<td align="center"><code>,</code></td>
+<td align="center">区分列及函数参数分隔符等</td>
+</tr>
+<tr>
+<td align="center"><code>()</code></td>
+<td align="center">指定运算优先顺序</td>
+</tr>
+<tr>
+<td align="center"><code>[]</code></td>
+<td align="center">定义矩阵</td>
+</tr>
+<tr>
+<td align="center"><code>&#123;&#125;</code></td>
+<td align="center">用于构成单元数组</td>
+</tr>
+<tr>
+<td align="center"><code>.</code></td>
+<td align="center">小数点及域访问符</td>
+</tr>
+<tr>
+<td align="center"><code>...</code></td>
+<td align="center">续行号</td>
+</tr>
+<tr>
+<td align="center"><code>%</code></td>
+<td align="center">注释</td>
+</tr>
+<tr>
+<td align="center"><code>!</code></td>
+<td align="center">调用操作系统运算</td>
+</tr>
+<tr>
+<td align="center"><code>=</code></td>
+<td align="center">赋值</td>
+</tr>
+<tr>
+<td align="center"><code>&#39;</code></td>
+<td align="center">字符串标记符</td>
+</tr>
+</tbody></table>
+<h3 id="（一）分号"><a href="#（一）分号" class="headerlink" title="（一）分号"></a>（一）分号</h3><p>一般情况下，在MAT中命令行窗口输入命令，系统即会计算出结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><br>&gt;&gt; A=[<span class="hljs-number">1</span> <span class="hljs-number">2</span>;<span class="hljs-number">3</span> <span class="hljs-number">4</span>]<br><br>A =<br><br>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span><br>     <span class="hljs-number">3</span>     <span class="hljs-number">4</span><br><br></code></pre></td></tr></table></figure>
+
+<p>若不想让MAT每次都显示运算结果，只需要在运算式最后加上分号<code>;</code>即：   </p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A=[<span class="hljs-number">1</span> <span class="hljs-number">2</span>;<span class="hljs-number">3</span> <span class="hljs-number">4</span>];<br>&gt;&gt; <br>&gt;&gt; <br>&gt;&gt; <br></code></pre></td></tr></table></figure>
+
+<p>MAT不输出结果</p>
+<h3 id="（二）续行号"><a href="#（二）续行号" class="headerlink" title="（二）续行号"></a>（二）续行号</h3><p>若在输入命令时，若命令过长，一行不便于浏览，则可以通过续行号<code>...</code>使得命令分多行完成</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; y=<span class="hljs-number">1</span>+<span class="hljs-number">3</span>+<span class="hljs-number">5</span>+<span class="hljs-number">2</span>+<span class="hljs-number">7</span>+<span class="hljs-number">5</span>+...<br><span class="hljs-number">1</span>+<span class="hljs-number">2</span>+<span class="hljs-number">3</span>+<span class="hljs-number">4</span>+<span class="hljs-number">5</span>+<span class="hljs-number">2</span><br><br>y =<br><br>    <span class="hljs-number">40</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（三）插入变量"><a href="#（三）插入变量" class="headerlink" title="（三）插入变量"></a>（三）插入变量</h3><p>这里没啥说的和C语言一样在变量插入时需要对变量进行定义</p>
+<p>否则就会出现：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x<br>未定义函数或变量 <span class="hljs-string">&#x27;x&#x27;</span>。<br></code></pre></td></tr></table></figure>
+
+<p>定义变量时可以加入公式，但是必须是常量公式</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x=<span class="hljs-number">4</span>*<span class="hljs-number">3</span><br><br>x =<br><br>    <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="三、常用指令"><a href="#三、常用指令" class="headerlink" title="三、常用指令"></a>三、常用指令</h2><p>下面介绍几个MAT使用过程中经常会用到的一些指令</p>
+<h3 id="（一）cd-显示或改变工作目录"><a href="#（一）cd-显示或改变工作目录" class="headerlink" title="（一）cd:显示或改变工作目录"></a>（一）cd:显示或改变工作目录</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; cd<br>E:\MATLAB666\MATLAB main file\bin<br></code></pre></td></tr></table></figure>
+
+<h3 id="（二）clc-清理命令行窗口"><a href="#（二）clc-清理命令行窗口" class="headerlink" title="（二）clc:清理命令行窗口"></a>（二）clc:清理命令行窗口</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; clc<br></code></pre></td></tr></table></figure>
+
+<h3 id="（三）clear-清除内存变量"><a href="#（三）clear-清除内存变量" class="headerlink" title="（三）clear:清除内存变量"></a>（三）clear:清除内存变量</h3><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=<span class="hljs-number">1</span><br><br>a =<br><br>     <span class="hljs-number">1</span><br><br>&gt;&gt; clear a<br>&gt;&gt; a<br>未定义函数或变量 <span class="hljs-string">&#x27;a&#x27;</span>。<br></code></pre></td></tr></table></figure>
+
+<h3 id="（四）其他常用的操作命令如下"><a href="#（四）其他常用的操作命令如下" class="headerlink" title="（四）其他常用的操作命令如下"></a>（四）其他常用的操作命令如下</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>clf</code></td>
+<td align="center">清楚图形窗口</td>
+</tr>
+<tr>
+<td align="center"><code>dir</code></td>
+<td align="center">显示当前目录文件</td>
+</tr>
+<tr>
+<td align="center"><code>disp</code></td>
+<td align="center">显示变量或文字内容</td>
+</tr>
+<tr>
+<td align="center"><code>hold</code></td>
+<td align="center">保持图形</td>
+</tr>
+<tr>
+<td align="center"><code>path</code></td>
+<td align="center">显示搜索目录</td>
+</tr>
+<tr>
+<td align="center"><code>type</code></td>
+<td align="center">显示文件内容</td>
+</tr>
+<tr>
+<td align="center"><code>load</code></td>
+<td align="center">加载指定文件的变量</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="一、变量与常量"><a href="#一、变量与常量" class="headerlink" title="一、变量与常量"></a>一、变量与常量</h2><h3 id="（一）变量"><a href="#（一）变量" class="headerlink" title="（一）变量"></a>（一）变量</h3><p>与C语言不同的是MAT中不需要对变量进行提前声明，但是需要对变量进行定义，在上文提到。</p>
+<p>命名遵循以下原则：</p>
+<ul>
+<li>变量名必须以字母开头，之后可以是任意的字母、数字或下划线</li>
+<li>变量名区分字母大小写</li>
+<li>变量名不超过<strong>31</strong>个字符，第31个字符往后的字符将会被忽略(名字这么长，基本不可能🤭)</li>
+</ul>
+<h3 id="（二）常量"><a href="#（二）常量" class="headerlink" title="（二）常量"></a>（二）常量</h3><p>MAT自身给了一些预定义的变量，这些可以理解为常量</p>
+<table>
+<thead>
+<tr>
+<th align="center">变量名称</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>ans</code></td>
+<td align="center">MAT默认变量</td>
+</tr>
+<tr>
+<td align="center"><code>pi</code></td>
+<td align="center">圆周率3.1415…</td>
+</tr>
+<tr>
+<td align="center"><code>eps</code></td>
+<td align="center">[浮点运算的相对精度](<a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/eps.html">浮点相对精度 - MATLAB eps - MathWorks 中国</a>)</td>
+</tr>
+<tr>
+<td align="center"><code>inf</code></td>
+<td align="center">无穷大</td>
+</tr>
+<tr>
+<td align="center"><code>NaN</code></td>
+<td align="center">不定值，如0&#x2F;0、∞&#x2F;∞</td>
+</tr>
+<tr>
+<td align="center"><code>i(j)</code></td>
+<td align="center">负数中的虚数单位</td>
+</tr>
+<tr>
+<td align="center"><code>realmin</code></td>
+<td align="center">[最小正浮点数](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/046535189bf6">计算机中的浮点数 - 简书 (jianshu.com)</a>)</td>
+</tr>
+<tr>
+<td align="center"><code>realmax</code></td>
+<td align="center">[最大正浮点数](<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/046535189bf6">计算机中的浮点数 - 简书 (jianshu.com)</a>)</td>
+</tr>
+</tbody></table>
+<p>利用<code>clear</code>举一个例子与上文进行对比</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; <span class="hljs-built_in">pi</span><br><br><span class="hljs-built_in">ans</span> =<br><br>    <span class="hljs-number">3.1416</span><br><br>&gt;&gt; clear <span class="hljs-built_in">pi</span><br>&gt;&gt; <span class="hljs-built_in">pi</span><br><br><span class="hljs-built_in">ans</span> =<br><br>    <span class="hljs-number">3.1416</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="二、数值"><a href="#二、数值" class="headerlink" title="二、数值"></a>二、数值</h2><p>MAT中数值类型分为<strong>整型</strong>、<strong>浮点型</strong>、<strong>复数类型</strong>三种</p>
+<h3 id="（一）整型"><a href="#（一）整型" class="headerlink" title="（一）整型"></a>（一）整型</h3><p>整型一共包括八种即：</p>
+<p><code>unsigned char</code>, <code>signed char</code>, <code>short int</code>,<code> unsigned short int</code>, <code>int</code>, <code>unsigned int</code>, <code>long int</code>, <code>unsigned long</code></p>
+<p>很简单，就不一一介绍了[🔗](<a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1672296493207256947.html#:~:text=%E6%95%B4%E6%95%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%898%E7%A7%8D%3A">https://zhidao.baidu.com/question/1672296493207256947.html#:~:text=整数的数据类型有8种%3A</a> unsigned char%2C signed char%2C short int%2C unsigned,int%2C int%2C unsigned int%2C long int%2C unsigned long。 )</p>
+<h3 id="（二）浮点型"><a href="#（二）浮点型" class="headerlink" title="（二）浮点型"></a>（二）浮点型</h3><p>浮点型只采取十进制，表示形式有两种，即十进制数形式<code>1.545</code>和指数形式<code>2.5E5</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; <span class="hljs-number">2.5E5</span><br><br><span class="hljs-built_in">ans</span> =<br><br>      <span class="hljs-number">250000</span><br></code></pre></td></tr></table></figure>
+
+<p>以下为<del>合法</del>不合法的实数，<del>请引用</del></p>
+<ul>
+<li><p><code>345</code>:无小数点  </p>
+</li>
+<li><p><code>E7</code>:阶码前无数字  </p>
+</li>
+<li><p><code>-5</code>：无阶码标志     </p>
+</li>
+<li><p><code>53.-E3</code>:负号位置❌</p>
+</li>
+<li><p><code>2.7E</code>:无阶码<br>补充一点，浮点型变量MAT中也分为两类，单精度和双精度型。</p>
+</li>
+</ul>
+<h3 id="（三）复数类型"><a href="#（三）复数类型" class="headerlink" title="（三）复数类型"></a>（三）复数类型</h3><p>形如<code>a+bi</code>的数成为复数，高中基础，不过多介绍了，不懂看[链接](<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%A4%8D%E6%95%B0/254365">复数（数的概念扩展）_百度百科 (baidu.com)</a>)</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; <span class="hljs-number">1</span>+<span class="hljs-number">2</span><span class="hljs-built_in">i</span><br><br><span class="hljs-built_in">ans</span> =<br><br>   <span class="hljs-number">1.0000</span> + <span class="hljs-number">2.0000</span><span class="hljs-built_in">i</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h1><h2 id="一、算术运算符"><a href="#一、算术运算符" class="headerlink" title="一、算术运算符"></a>一、算术运算符</h2><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">角色</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>+</code></td>
+<td align="center">加法（一元）</td>
+</tr>
+<tr>
+<td align="center"><code>-</code></td>
+<td align="center">减法（一元）</td>
+</tr>
+<tr>
+<td align="center"><code>.\*</code></td>
+<td align="center">按元素乘法</td>
+</tr>
+<tr>
+<td align="center"><code>*</code></td>
+<td align="center">矩阵乘法</td>
+</tr>
+<tr>
+<td align="center"><code>./</code></td>
+<td align="center">按元素右除</td>
+</tr>
+<tr>
+<td align="center"><code>/</code></td>
+<td align="center">矩阵右除</td>
+</tr>
+<tr>
+<td align="center"><code>.\</code></td>
+<td align="center">矩阵左除（也称为<em>反斜杠</em>）</td>
+</tr>
+<tr>
+<td align="center"><code>.^</code></td>
+<td align="center">按元素求幂</td>
+</tr>
+<tr>
+<td align="center"><code>^</code></td>
+<td align="center">矩阵幂</td>
+</tr>
+<tr>
+<td align="center"><code>.&#39;</code></td>
+<td align="center">转置</td>
+</tr>
+<tr>
+<td align="center"><code>&#39;</code></td>
+<td align="center">复共轭转置</td>
+</tr>
+</tbody></table>
+<h2 id="二、关系运算符"><a href="#二、关系运算符" class="headerlink" title="二、关系运算符"></a>二、关系运算符</h2><table>
+<thead>
+<tr>
+<th align="center">关系运算符</th>
+<th align="center">定义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;</code></td>
+<td align="center">小于</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;=</code></td>
+<td align="center">小于或等于</td>
+</tr>
+<tr>
+<td align="center"><code>&gt;</code></td>
+<td align="center">大于</td>
+</tr>
+<tr>
+<td align="center"><code>\&gt;=</code></td>
+<td align="center">大于或等于</td>
+</tr>
+<tr>
+<td align="center"><code>==</code></td>
+<td align="center">等于</td>
+</tr>
+<tr>
+<td align="center"><code>~=</code></td>
+<td align="center">不等于</td>
+</tr>
+</tbody></table>
+<h2 id="三、逻辑运算符"><a href="#三、逻辑运算符" class="headerlink" title="三、逻辑运算符"></a>三、逻辑运算符</h2><table>
+<thead>
+<tr>
+<th align="center">逻辑运算符</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&amp;</code></td>
+<td align="center">逻辑与运算符</td>
+</tr>
+<tr>
+<td align="center">&#96;</td>
+<td align="center">&#96;</td>
+</tr>
+<tr>
+<td align="center"><code>~</code></td>
+<td align="center">逻辑非运算符</td>
+</tr>
+<tr>
+<td align="center"><strong>逻辑运算函数</strong></td>
+<td align="center"><strong>描述</strong></td>
+</tr>
+<tr>
+<td align="center"><code>and(A, B)</code></td>
+<td align="center">逻辑与运算函数，A 和 B 都为 1 时返回 1，否则返回 0</td>
+</tr>
+<tr>
+<td align="center"><code>or(A, B)</code></td>
+<td align="center">逻辑或运算函数，A 和 B 有一个为 1 时返回 1，都为 0 时才返回 0</td>
+</tr>
+<tr>
+<td align="center"><code>not(A)</code></td>
+<td align="center">逻辑非运算，A 为 1 时返回 0，A 为 0 时返回 1</td>
+</tr>
+<tr>
+<td align="center"><code>xor(A, B)</code></td>
+<td align="center">异或运算函数，A 和 B 不同是返回 1，相同时返回 0</td>
+</tr>
+<tr>
+<td align="center"><strong>向量运算函数</strong></td>
+<td align="center"><strong>描述</strong></td>
+</tr>
+<tr>
+<td align="center"><code>any(A)</code></td>
+<td align="center">向量 A 中有非 0 元素时返回 1，矩阵 A 某一列有非 0 元素时返回 1</td>
+</tr>
+<tr>
+<td align="center"><code>all(A)</code></td>
+<td align="center">向量 A 中所有元素都为非 0 时返回 1，矩阵 A 中某列所有元素都为非 0 时返回 1</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="函数运算"><a href="#函数运算" class="headerlink" title="函数运算"></a>函数运算</h1><h2 id="（一）复数运算"><a href="#（一）复数运算" class="headerlink" title="（一）复数运算"></a>（一）复数运算</h2><p>以下是MAT提供的复数运算函数</p>
+<table>
+<thead>
+<tr>
+<th align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/abs.html"><code>abs</code></a></th>
+<th>绝对值和复数的模</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/angle.html"><code>angle</code></a></td>
+<td>相位角</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/complex.html"><code>complex</code></a></td>
+<td>创建复数数组</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/conj.html"><code>conj</code></a></td>
+<td>复共轭</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/cplxpair.html"><code>cplxpair</code></a></td>
+<td>将复数排序为复共轭对组</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/i.html"><code>i</code></a></td>
+<td>虚数单位</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/imag.html"><code>imag</code></a></td>
+<td>复数的虚部</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/isreal.html"><code>isreal</code></a></td>
+<td>确定数组是否使用复数存储</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/j.html"><code>j</code></a></td>
+<td>虚数单位</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/real.html"><code>real</code></a></td>
+<td>复数的实部</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/sign.html"><code>sign</code></a></td>
+<td>Sign 函数（符号函数）</td>
+</tr>
+<tr>
+<td align="center"><a target="_blank" rel="noopener" href="https://ww2.mathworks.cn/help/matlab/ref/unwrap.html"><code>unwrap</code></a></td>
+<td>平移相位角</td>
+</tr>
+</tbody></table>
+<h2 id="（二）三角函数运算"><a href="#（二）三角函数运算" class="headerlink" title="（二）三角函数运算"></a>（二）三角函数运算</h2><table>
+<thead>
+<tr>
+<th align="center">函数名</th>
+<th align="center">功能描述</th>
+<th align="center">函数名</th>
+<th align="center">功能描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">sin</td>
+<td align="center">正弦</td>
+<td align="center">sec</td>
+<td align="center">正割</td>
+</tr>
+<tr>
+<td align="center">sind</td>
+<td align="center">正弦，输入以度为单位</td>
+<td align="center">secd</td>
+<td align="center">正割，输入以度为单位</td>
+</tr>
+<tr>
+<td align="center">sinh</td>
+<td align="center">双曲正弦</td>
+<td align="center">sech</td>
+<td align="center">双曲正割</td>
+</tr>
+<tr>
+<td align="center">asin</td>
+<td align="center">反正弦</td>
+<td align="center">asec</td>
+<td align="center">反正割</td>
+</tr>
+<tr>
+<td align="center">asind</td>
+<td align="center">反正弦，输出以度为单位</td>
+<td align="center">asecd</td>
+<td align="center">反正割，输出以度为单位</td>
+</tr>
+<tr>
+<td align="center">asinh</td>
+<td align="center">反双曲正弦</td>
+<td align="center">asech</td>
+<td align="center">反双曲正割</td>
+</tr>
+<tr>
+<td align="center">cos</td>
+<td align="center">余弦</td>
+<td align="center">csc</td>
+<td align="center">余割</td>
+</tr>
+<tr>
+<td align="center">cosd</td>
+<td align="center">余弦，输出以度为单位</td>
+<td align="center">cscd</td>
+<td align="center">余割，输出以度为单位</td>
+</tr>
+<tr>
+<td align="center">cosh</td>
+<td align="center">双曲余弦</td>
+<td align="center">csch</td>
+<td align="center">双曲余割</td>
+</tr>
+<tr>
+<td align="center">acos</td>
+<td align="center">反余弦</td>
+<td align="center">acsc</td>
+<td align="center">反余割</td>
+</tr>
+<tr>
+<td align="center">acosd</td>
+<td align="center">反余弦，输入以度为单位</td>
+<td align="center">acscd</td>
+<td align="center">反余割，输出以度为单位</td>
+</tr>
+<tr>
+<td align="center">acosh</td>
+<td align="center">反双曲余弦</td>
+<td align="center">acsch</td>
+<td align="center">反双曲余割</td>
+</tr>
+<tr>
+<td align="center">tan</td>
+<td align="center">正切</td>
+<td align="center">cot</td>
+<td align="center">余切</td>
+</tr>
+<tr>
+<td align="center">tand</td>
+<td align="center">正切，输入以度为单位</td>
+<td align="center">cotd</td>
+<td align="center">余切，输出以度为单位</td>
+</tr>
+<tr>
+<td align="center">tanh</td>
+<td align="center">双曲正切</td>
+<td align="center">coth</td>
+<td align="center">双曲余切</td>
+</tr>
+<tr>
+<td align="center">atan</td>
+<td align="center">反正切</td>
+<td align="center">acot</td>
+<td align="center">反余切</td>
+</tr>
+<tr>
+<td align="center">atand</td>
+<td align="center">反正切，输出以度为单位</td>
+<td align="center">acotd</td>
+<td align="center">反余切，输出以度为单位</td>
+</tr>
+<tr>
+<td align="center">atan2</td>
+<td align="center">四象限反正切</td>
+<td align="center">acoth</td>
+<td align="center">反双曲余切</td>
+</tr>
+</tbody></table>
+<h1 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h1><h2 id="一、向量的生成"><a href="#一、向量的生成" class="headerlink" title="一、向量的生成"></a>一、向量的生成</h2><p>向量的生成有直接输入法、冒号法和利用MAT函数创建三种方法</p>
+<h3 id="（一）直接输入法"><a href="#（一）直接输入法" class="headerlink" title="（一）直接输入法"></a>（一）直接输入法</h3><p>顾名思义就是在使用向量时在命令行直接输入，但格式要求如下：</p>
+<ul>
+<li>向量元素需要使用<code>[]</code>括起来</li>
+<li>元素之间可以用空格、分号、逗号间隔</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> ]<br>&gt;&gt; x=[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br>&gt;&gt; x=[<span class="hljs-number">1</span>;<span class="hljs-number">2</span>;<span class="hljs-number">3</span>;<span class="hljs-number">4</span>]<br></code></pre></td></tr></table></figure>
+
+<h3 id="（二）冒号法"><a href="#（二）冒号法" class="headerlink" title="（二）冒号法"></a>（二）冒号法</h3><p>基本格式是<code>x=first:increment:last</code>,可以表示创建一个从<code>first</code>开始到<code>last</code>结束，元素增量为<code>increment</code>。若增量为<strong>1</strong>，那么<code>increment</code>可以省略不写</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x=<span class="hljs-number">0</span>:<span class="hljs-number">2</span>:<span class="hljs-number">8</span><br><br>x =<br><br>     <span class="hljs-number">0</span>     <span class="hljs-number">2</span>     <span class="hljs-number">4</span>     <span class="hljs-number">6</span>     <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（三）利用linspace函数"><a href="#（三）利用linspace函数" class="headerlink" title="（三）利用linspace函数"></a>（三）利用<code>linspace</code>函数</h3><p><code>linspace</code>可以直接定义数据元素的个数,格式为<code>linspace(first_value,last_value,number)</code>,<code>number</code>表示向量元素的个数</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; <span class="hljs-built_in">linspace</span>(<span class="hljs-number">0</span>,<span class="hljs-number">10</span>,<span class="hljs-number">6</span>)<br><br><span class="hljs-built_in">ans</span> =<br><br>     <span class="hljs-number">0</span>     <span class="hljs-number">2</span>     <span class="hljs-number">4</span>     <span class="hljs-number">6</span>     <span class="hljs-number">8</span>    <span class="hljs-number">10</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（四）利用logspace函数"><a href="#（四）利用logspace函数" class="headerlink" title="（四）利用logspace函数"></a>（四）利用<code>logspace</code>函数</h3><p><code>logspace</code>也是通过直接定义向量元素的个数进行创建，格式也是<code>linspace(first_value,last_value,number)</code>,但与之不同的是创建的是一个从10^first_value^开始，到10^last_value^结束的并包括number个元素的向量</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; <span class="hljs-built_in">logspace</span>(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>)<br><br><span class="hljs-built_in">ans</span> =<br><br>          <span class="hljs-number">10</span>         <span class="hljs-number">100</span>        <span class="hljs-number">1000</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="二、向量元素的引用"><a href="#二、向量元素的引用" class="headerlink" title="二、向量元素的引用"></a>二、向量元素的引用</h2><p>常用的引用方式</p>
+<table>
+<thead>
+<tr>
+<th align="center">格式</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>x(n)</code></td>
+<td align="center">表示向量中的第<strong>n</strong>个元素</td>
+</tr>
+<tr>
+<td align="center"><code>x(n1:n2)</code></td>
+<td align="center">表示向量中第<strong>n1</strong>至第<strong>n2</strong>个元素</td>
+</tr>
+</tbody></table>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>];<br>&gt;&gt; x(<span class="hljs-number">1</span>)<br><br><span class="hljs-built_in">ans</span> =<br><br>     <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; x=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span> ];<br>&gt;&gt; x(<span class="hljs-number">1</span>:<span class="hljs-number">3</span>)<br><br><span class="hljs-built_in">ans</span> =<br><br>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="三、向量运算"><a href="#三、向量运算" class="headerlink" title="三、向量运算"></a>三、向量运算</h2><p>线性代数告诉我们向量可以看成一个特殊的矩阵，所有向量运算实质上就是矩阵的运算，这里除了<strong>四则运算外</strong>还有向量的<strong>点积</strong>、<strong>叉积</strong>和<strong>混合积</strong></p>
+<h3 id="（一）四则运算"><a href="#（一）四则运算" class="headerlink" title="（一）四则运算"></a>（一）四则运算</h3><h4 id="1-对向量定义"><a href="#1-对向量定义" class="headerlink" title="1.对向量定义"></a>1.对向量定义</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=<span class="hljs-built_in">logspace</span>(<span class="hljs-number">0</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>)<br><br>a =<br><br>           <span class="hljs-number">1</span>          <span class="hljs-number">10</span>         <span class="hljs-number">100</span>        <span class="hljs-number">1000</span>       <span class="hljs-number">10000</span>      <span class="hljs-number">100000</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="2-加法运算"><a href="#2-加法运算" class="headerlink" title="2.加法运算"></a>2.加法运算</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a+<span class="hljs-number">10</span><br><br><span class="hljs-built_in">ans</span> =<br><br>          <span class="hljs-number">11</span>          <span class="hljs-number">20</span>         <span class="hljs-number">110</span>        <span class="hljs-number">1010</span>       <span class="hljs-number">10010</span>      <span class="hljs-number">100010</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="3-减法运算"><a href="#3-减法运算" class="headerlink" title="3.减法运算"></a>3.减法运算</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a<span class="hljs-number">-1</span><br><br><span class="hljs-built_in">ans</span> =<br><br>           <span class="hljs-number">0</span>           <span class="hljs-number">9</span>          <span class="hljs-number">99</span>         <span class="hljs-number">999</span>        <span class="hljs-number">9999</span>       <span class="hljs-number">99999</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="4-乘法运算"><a href="#4-乘法运算" class="headerlink" title="4.乘法运算"></a>4.乘法运算</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a*<span class="hljs-number">5</span><br><br><span class="hljs-built_in">ans</span> =<br><br>           <span class="hljs-number">5</span>          <span class="hljs-number">50</span>         <span class="hljs-number">500</span>        <span class="hljs-number">5000</span>       <span class="hljs-number">50000</span>      <span class="hljs-number">500000</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="5-除法运算"><a href="#5-除法运算" class="headerlink" title="5.除法运算"></a>5.除法运算</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> <span class="hljs-number">4</span> <span class="hljs-number">5</span>];<br>&gt;&gt; a/<span class="hljs-number">2</span><br><br><span class="hljs-built_in">ans</span> =<br><br>    <span class="hljs-number">0.5000</span>    <span class="hljs-number">1.0000</span>    <span class="hljs-number">1.5000</span>    <span class="hljs-number">2.0000</span>    <span class="hljs-number">2.5000</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="6-混合运算"><a href="#6-混合运算" class="headerlink" title="6.混合运算"></a>6.混合运算</h4><figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a*<span class="hljs-number">5</span>+<span class="hljs-number">1</span><br><br><span class="hljs-built_in">ans</span> =<br><br>     <span class="hljs-number">6</span>    <span class="hljs-number">11</span>    <span class="hljs-number">16</span>    <span class="hljs-number">21</span>    <span class="hljs-number">26</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（二）点积"><a href="#（二）点积" class="headerlink" title="（二）点积"></a>（二）点积</h3><p>MAT中实现<strong>点积</strong>有两种方法，即<code>a*b</code>和调用函数<code>dot</code>进行计算</p>
+<p><code>dot</code>的调用格式分以下两种:</p>
+<ul>
+<li><p><code>C = dot(a,b)</code></p>
+<ul>
+<li><p>如果 <code>A</code> 和 <code>B</code> 是向量，则它们的长度必须相同</p>
+</li>
+<li><p>如果 <code>A</code> 和 <code>B</code> 为矩阵或多维数组，则它们必须具有相同大小。在本例中，<code>dot</code> 函数将 <code>A</code> 和 <code>B</code> 视为向量集合。该函数计算对应向量沿大小不等于 1 的第一个数组维度的叉积</p>
+</li>
+</ul>
+</li>
+<li><p><code>C = dot(a,b,dim)</code></p>
+<ul>
+<li>返回向量<strong>a</strong>和<strong>b</strong>在<strong>dim</strong>维的点积</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A = [<span class="hljs-number">4</span> <span class="hljs-number">-1</span> <span class="hljs-number">2</span>];<br>B = [<span class="hljs-number">2</span> <span class="hljs-number">-2</span> <span class="hljs-number">-1</span>];<br>&gt;&gt; C = <span class="hljs-built_in">dot</span>(A,B)<br><br>C =<br><br>     <span class="hljs-number">8</span><br></code></pre></td></tr></table></figure>
+
+<p>  C &#x3D; A(1)*B(1) + A(2)*B(2) + A(3)*B(3)</p>
+<h3 id="（三）叉积"><a href="#（三）叉积" class="headerlink" title="（三）叉积"></a>（三）叉积</h3><p>空间解析几何中，两向量叉积后得到的是一个垂直于过交点且垂直于两向量平面的法向量，在MAT中我们使用<code>cross</code>来实现。</p>
+<p><code>cross</code>的调用也分以下两种:</p>
+<ul>
+<li><code>C=cross(a,b)</code><ul>
+<li>如果 <code>A</code> 和 <code>B</code> 为向量，则它们必须是三维的</li>
+<li>如果 <code>A</code> 和 <code>B</code> 为矩阵或多维数组，则它们必须具有相同大小。在这种情况下，<code>cross</code> 函数将 <code>A</code> 和 <code>B</code> 视为三元素向量集合。该函数计算对应向量沿大小等于 3 的第一个数组维度的叉积</li>
+</ul>
+</li>
+<li><code>C=cross(a,b,dim)</code><ul>
+<li>计算数组 <code>A</code> 和 <code>B</code> 沿维度 <code>dim</code> 的叉积。<code>A</code> 和 <code>B</code> 必须具有相同的大小，并且 <code>size(A,dim)</code> 和 <code>size(B,dim)</code> 必须为 3。<code>dim</code> 输入是一个正整数标量</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A = [<span class="hljs-number">4</span> <span class="hljs-number">-2</span> <span class="hljs-number">1</span>];<br>B = [<span class="hljs-number">1</span> <span class="hljs-number">-1</span> <span class="hljs-number">3</span>];<br>&gt;&gt; C = <span class="hljs-built_in">cross</span>(A,B)<br><br>C =<br><br>    <span class="hljs-number">-5</span>   <span class="hljs-number">-11</span>    <span class="hljs-number">-2</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="（四）混合积"><a href="#（四）混合积" class="headerlink" title="（四）混合积"></a>（四）混合积</h3><p>线性代数告诉我们向量的混合积是由$\vec{a}$和$\vec{b}$的<strong>叉积</strong>结果向量再<strong>点乘</strong>$\vec{c}$，MAT中向量的混合积运算可以由以上的两个函数<code>(dot,cross)</code>共同来实现,格式为<code>dot(a,cross(b,c))</code></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> ];<br>&gt;&gt; b=[<span class="hljs-number">1</span> <span class="hljs-number">3</span> <span class="hljs-number">5</span>];<br>&gt;&gt; c=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span>];<br>&gt;&gt; d=<span class="hljs-built_in">dot</span>(a,<span class="hljs-built_in">cross</span>(b,c))<br><br>d =<br><br>     <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="多项式"><a href="#多项式" class="headerlink" title="多项式"></a>多项式</h1><h2 id="一、多项式的创建"><a href="#一、多项式的创建" class="headerlink" title="一、多项式的创建"></a>一、多项式的创建</h2><p>这个。。。废话不多说，直接输入呗😉</p>
+<p>例如代数式a*x^2^</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a*x.^n<br></code></pre></td></tr></table></figure>
+
+<h1 id="矩阵"><a href="#矩阵" class="headerlink" title="矩阵"></a>矩阵</h1><h2 id="（一）矩阵定义"><a href="#（一）矩阵定义" class="headerlink" title="（一）矩阵定义"></a>（一）矩阵定义</h2><p>MAT以矩阵作为数据操作的基本单位，矩阵是由m*n个数a<del>ij</del>(i&#x3D;1,2,…..,m;j&#x3D;1,2,3……m)排成的m行n列数表</p>
+<p>记作：<br>$$<br>A &#x3D; \left[ \begin{matrix} a11 &amp; a12 &amp; …&amp; a1n\ a21 &amp; a22 &amp; … &amp; a2n \… &amp; … &amp;…&amp; … \ am1 &amp; am2 &amp; …  &amp; amn \end{matrix} \right]<br>$$<br>称为m*n矩阵，也可以记作a<del>ij</del>或A<del>mn</del>，其中<strong>i</strong>表示行数，<strong>j</strong>表是列数，若m&#x3D;n那么改矩阵又被称之为<strong>n</strong>阶方阵</p>
+<p>ok介绍完毕，线代的内容可自行翻书(≧▽≦q)</p>
+<p>使用矩阵的第一步就是创建矩阵，形式如下：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=[<span class="hljs-number">15</span> <span class="hljs-number">15</span> <span class="hljs-number">15</span>;<span class="hljs-number">14</span> <span class="hljs-number">14</span> <span class="hljs-number">14</span>; <span class="hljs-number">13</span> <span class="hljs-number">13</span> <span class="hljs-number">13</span>]<br><br>a =<br><br>    <span class="hljs-number">15</span>    <span class="hljs-number">15</span>    <span class="hljs-number">15</span><br>    <span class="hljs-number">14</span>    <span class="hljs-number">14</span>    <span class="hljs-number">14</span><br>    <span class="hljs-number">13</span>    <span class="hljs-number">13</span>    <span class="hljs-number">13</span><br></code></pre></td></tr></table></figure>
+
+<p>行之间用<strong>；</strong>隔开，列之间用<strong>空格</strong>隔开，整体要用<code>[]</code>包括</p>
+<p>补充一点在矩阵的输入过程中，每一行加上<code>[]</code>也是合法的，但是整体一定不要漏掉中括号</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; a=[[<span class="hljs-number">15</span> <span class="hljs-number">15</span> <span class="hljs-number">15</span>];[<span class="hljs-number">14</span> <span class="hljs-number">14</span> <span class="hljs-number">14</span>]; <span class="hljs-number">13</span> <span class="hljs-number">13</span> <span class="hljs-number">13</span>]<br><br>a =<br><br>    <span class="hljs-number">15</span>    <span class="hljs-number">15</span>    <span class="hljs-number">15</span><br>    <span class="hljs-number">14</span>    <span class="hljs-number">14</span>    <span class="hljs-number">14</span><br>    <span class="hljs-number">13</span>    <span class="hljs-number">13</span>    <span class="hljs-number">13</span><br></code></pre></td></tr></table></figure>
+
+<p>创建一个<strong>复数</strong>矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A=[<span class="hljs-number">1</span>,<span class="hljs-number">1</span>+<span class="hljs-built_in">i</span>,<span class="hljs-number">2</span>;<span class="hljs-number">2</span>,<span class="hljs-number">3</span>+<span class="hljs-number">2</span><span class="hljs-built_in">i</span>,<span class="hljs-number">1</span>]<br><br>A =<br><br>   <span class="hljs-number">1.0000</span> + <span class="hljs-number">0.0000</span><span class="hljs-built_in">i</span>   <span class="hljs-number">1.0000</span> + <span class="hljs-number">1.0000</span><span class="hljs-built_in">i</span>   <span class="hljs-number">2.0000</span> + <span class="hljs-number">0.0000</span><span class="hljs-built_in">i</span><br>   <span class="hljs-number">2.0000</span> + <span class="hljs-number">0.0000</span><span class="hljs-built_in">i</span>   <span class="hljs-number">3.0000</span> + <span class="hljs-number">2.0000</span><span class="hljs-built_in">i</span>   <span class="hljs-number">1.0000</span> + <span class="hljs-number">0.0000</span><span class="hljs-built_in">i</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="（二）矩阵的生成"><a href="#（二）矩阵的生成" class="headerlink" title="（二）矩阵的生成"></a>（二）矩阵的生成</h2><p>以上介绍了矩阵通过直接输入的方式来生成，以下介绍两种：利用M文件生成法和文本文件生成法</p>
+<h3 id="1-利用M文件生成法"><a href="#1-利用M文件生成法" class="headerlink" title="1.利用M文件生成法"></a>1.利用M文件生成法</h3><p>该方法主要适用于当矩阵的规模比较大的时候，直接输入法显得笨拙</p>
+<p>第一，创建一个脚本文件，记好文件名（这里我用的文件名为<strong>Untitled3</strong>），在改&#x3D;该文件里创建一个矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs matlab"><span class="hljs-comment">%Untitled3</span><br><span class="hljs-comment">%创建一个名为gmatrix的矩阵</span><br>gmatrix=[<span class="hljs-number">132</span> <span class="hljs-number">34</span> <span class="hljs-number">23</span> <span class="hljs-number">4</span> <span class="hljs-number">54</span> <span class="hljs-number">34</span> ;<span class="hljs-number">12</span> <span class="hljs-number">34</span> <span class="hljs-number">56</span> <span class="hljs-number">23</span> <span class="hljs-number">23</span> <span class="hljs-number">14</span>; <span class="hljs-number">143</span> <span class="hljs-number">14</span> <span class="hljs-number">34</span> <span class="hljs-number">56</span> <span class="hljs-number">23</span> <span class="hljs-number">34</span>;<span class="hljs-number">143</span> <span class="hljs-number">23</span> <span class="hljs-number">56</span> <span class="hljs-number">34</span> <span class="hljs-number">26</span> <span class="hljs-number">343</span>];<br></code></pre></td></tr></table></figure>
+
+<p>第二，右键点中文件，<strong>运行</strong>该文件，在MAT的命令窗口输入<strong>文件名</strong>和<strong>矩阵名</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; Untitled3<br>&gt;&gt; gmatrix<br></code></pre></td></tr></table></figure>
+
+<p>随后便得到以下结果</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs matlab">gmatrix =<br><br>   <span class="hljs-number">132</span>    <span class="hljs-number">34</span>    <span class="hljs-number">23</span>     <span class="hljs-number">4</span>    <span class="hljs-number">54</span>    <span class="hljs-number">34</span><br>    <span class="hljs-number">12</span>    <span class="hljs-number">34</span>    <span class="hljs-number">56</span>    <span class="hljs-number">23</span>    <span class="hljs-number">23</span>    <span class="hljs-number">14</span><br>   <span class="hljs-number">143</span>    <span class="hljs-number">14</span>    <span class="hljs-number">34</span>    <span class="hljs-number">56</span>    <span class="hljs-number">23</span>    <span class="hljs-number">34</span><br>   <span class="hljs-number">143</span>    <span class="hljs-number">23</span>    <span class="hljs-number">56</span>    <span class="hljs-number">34</span>    <span class="hljs-number">26</span>   <span class="hljs-number">343</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：M文件中的变量名（矩阵名）不能和文件名相同，这样会使得变量名和函数名的混乱</p>
+<h3 id="2-利用文本创建"><a href="#2-利用文本创建" class="headerlink" title="2.利用文本创建"></a>2.利用文本创建</h3><p>第一步，在MAT的路径文件夹里创建一个<strong>txt</strong>文件，这里起名叫**files1，并在文件内输入矩阵的元素，并保存</p>
+<figure class="highlight basic"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs basic"><span class="hljs-symbol">1 </span><span class="hljs-number">2</span> <span class="hljs-number">3</span><br><span class="hljs-symbol">4 </span><span class="hljs-number">5</span> <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<p>第二步，在MAT的命令框里输入</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; load file1.txt<br>&gt;&gt; file1<br><br>file1 =<br><br>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span><br>     <span class="hljs-number">4</span>     <span class="hljs-number">5</span>     <span class="hljs-number">6</span><br></code></pre></td></tr></table></figure>
+
+<p>注意：在创建txt文件时，一定要确保文件处于MAT的当前目录文件夹下，否则无法运行</p>
+<h2 id="（三）创建特殊矩阵"><a href="#（三）创建特殊矩阵" class="headerlink" title="（三）创建特殊矩阵"></a>（三）创建特殊矩阵</h2><ul>
+<li><p>零矩阵:</p>
+<ul>
+<li><p>zeros(m):	产生m*m零矩阵</p>
+</li>
+<li><p>zeros(m,n):	产生m*n零矩阵</p>
+</li>
+<li><p>zeros(size(A)):	产生与矩阵A同样大小的零矩阵</p>
+</li>
+</ul>
+</li>
+<li><p>全1矩阵:</p>
+<ul>
+<li><p>ones(m:	产生mm全1矩阵</p>
+</li>
+<li><p>ones(m,n):	产生mn全1矩阵</p>
+</li>
+<li><p>ones(size(A)):	产生与矩阵A同样大小的全1矩阵</p>
+</li>
+</ul>
+</li>
+<li><p>对角线为1的矩阵:</p>
+<ul>
+<li>eye(m):产生mm的单位矩阵</li>
+<li>eye(m,n):产生mn的对角线为1的矩阵</li>
+<li>eye(size(A)):产生与矩阵A同样大小的对角线为1矩阵</li>
+</ul>
+</li>
+<li><p>随机矩阵:</p>
+<ul>
+<li>rand(m):产生mm的(0,1)区间里均匀分布的随机矩阵</li>
+<li>randn(m):产生mm的均值为0，方差为1的标准正态分布随机矩阵</li>
+</ul>
+</li>
+<li><p>魔方矩阵:</p>
+<ul>
+<li>magic(m):产生m阶的魔方矩阵</li>
+</ul>
+</li>
+<li><p>范德蒙矩阵:</p>
+<ul>
+<li>vander(V):产生以V为基础的范德蒙矩阵</li>
+</ul>
+</li>
+<li><p>希尔伯特矩阵:</p>
+<ul>
+<li>Hilb(V):产生以V为基础的希尔伯特矩阵</li>
+</ul>
+</li>
+<li><p>伴随矩阵:</p>
+<ul>
+<li>compan§:产生以p为基础的伴随矩阵。其中p是多项式的向量</li>
+</ul>
+</li>
+<li><p>帕斯卡矩阵:</p>
+<ul>
+<li>pascal(n):生成一个n阶帕斯卡矩阵</li>
+</ul>
+</li>
+</ul>
+<h2 id="（四）矩阵元素的运算"><a href="#（四）矩阵元素的运算" class="headerlink" title="（四）矩阵元素的运算"></a>（四）矩阵元素的运算</h2><p>矩阵中的元素和向量中的元素一样，也可以抽取引用、编辑修改等操作（这句话是套话）😊</p>
+<h3 id="1-矩阵元素的修改"><a href="#1-矩阵元素的修改" class="headerlink" title="1.矩阵元素的修改"></a>1.矩阵元素的修改</h3><p>在建立一个矩阵后，要使用一些语句对矩阵进行修改</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>D=[A;B C]</code></td>
+<td align="center">A为原矩阵，B，C中包含要扩充的元素，D为扩充后的矩阵</td>
+</tr>
+<tr>
+<td align="center"><code>A(m,:) = [ ]</code></td>
+<td align="center">删除A的第m行</td>
+</tr>
+<tr>
+<td align="center"><code>A(;,n)=[]</code></td>
+<td align="center">删除A的第n列</td>
+</tr>
+<tr>
+<td align="center"><code>A(m,n)=a;A(m,:)=[a,b...];A(:,n)=[a b...]</code></td>
+<td align="center">对A的第m行以及第n列赋值</td>
+</tr>
+</tbody></table>
+<p>其他的都通俗易懂，下面用代码解释一下<strong>命令1</strong></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A=[<span class="hljs-number">1</span> <span class="hljs-number">2</span> <span class="hljs-number">3</span> ; <span class="hljs-number">4</span> <span class="hljs-number">5</span> <span class="hljs-number">6</span>];<br>&gt;&gt; B=<span class="hljs-built_in">eye</span>(<span class="hljs-number">2</span>);<br>&gt;&gt; C=<span class="hljs-built_in">zeros</span>(<span class="hljs-number">2</span>,<span class="hljs-number">1</span>);<br>&gt;&gt; D=[A;B C]<br><br>D =<br><br>     <span class="hljs-number">1</span>     <span class="hljs-number">2</span>     <span class="hljs-number">3</span><br>     <span class="hljs-number">4</span>     <span class="hljs-number">5</span>     <span class="hljs-number">6</span><br>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span>     <span class="hljs-number">0</span><br>     <span class="hljs-number">0</span>     <span class="hljs-number">1</span>     <span class="hljs-number">0</span><br></code></pre></td></tr></table></figure>
+<h3 id="2-矩阵的变维"><a href="#2-矩阵的变维" class="headerlink" title="2.矩阵的变维"></a>2.矩阵的变维</h3><p>矩阵的变维有两种方法：<code>:</code>法和<code>reshape</code>的函数法。调用格式：<code>reshape(X,m,n):</code>将已知的矩阵变维成<strong>m</strong>行<strong>n</strong>列的矩阵</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; A=[<span class="hljs-number">1</span>,<span class="hljs-number">4</span>,<span class="hljs-number">7</span>,<span class="hljs-number">10</span>;<span class="hljs-number">2</span>,<span class="hljs-number">5</span>,<span class="hljs-number">8</span>,<span class="hljs-number">11</span>;<span class="hljs-number">3</span>,<span class="hljs-number">6</span>,<span class="hljs-number">9</span>,<span class="hljs-number">12</span>] ;<br>&gt;&gt; B=<span class="hljs-built_in">reshape</span>(A,<span class="hljs-number">2</span>,<span class="hljs-number">6</span>)     <span class="hljs-comment">%变为2×6矩阵  </span><br><br>B =<br><br>     <span class="hljs-number">1</span>     <span class="hljs-number">3</span>     <span class="hljs-number">5</span>     <span class="hljs-number">7</span>     <span class="hljs-number">9</span>    <span class="hljs-number">11</span><br>     <span class="hljs-number">2</span>     <span class="hljs-number">4</span>     <span class="hljs-number">6</span>     <span class="hljs-number">8</span>    <span class="hljs-number">10</span>    <span class="hljs-number">12</span><br></code></pre></td></tr></table></figure>
+
+<p>这里2或6可以用<code>[]</code>代替，然后系统自动会计算出<code>[]</code>的值</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs matlab">&gt;&gt; B=<span class="hljs-built_in">reshape</span>(A,[],<span class="hljs-number">6</span>)        <span class="hljs-comment">%用[]代替其中一个维度  </span><br>B =  <br> <br>     <span class="hljs-number">1</span>     <span class="hljs-number">3</span>     <span class="hljs-number">5</span>     <span class="hljs-number">7</span>     <span class="hljs-number">9</span>    <span class="hljs-number">11</span>  <br>     <span class="hljs-number">2</span>     <span class="hljs-number">4</span>     <span class="hljs-number">6</span>     <span class="hljs-number">8</span>    <span class="hljs-number">10</span>    <span class="hljs-number">12</span>  <br></code></pre></td></tr></table></figure>
+
+<h3 id="3-矩阵变向"><a href="#3-矩阵变向" class="headerlink" title="3.矩阵变向"></a>3.矩阵变向</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>Rot(90)</code></td>
+<td align="center">将A逆时针方向旋转90°</td>
+</tr>
+<tr>
+<td align="center"><code>Rot(90,k)</code></td>
+<td align="center">将A逆时针方向旋转90*k°，k为正整数或负整数</td>
+</tr>
+<tr>
+<td align="center"><code>Fliplr(X)</code></td>
+<td align="center">将X左右翻转</td>
+</tr>
+<tr>
+<td align="center"><code>flipud(X)</code></td>
+<td align="center">将X上下翻转</td>
+</tr>
+<tr>
+<td align="center"><code>flipdim(X,dim)q</code></td>
+<td align="center">dim&#x3D;1时对行翻转，dim&#x3D;2时对列翻转</td>
+</tr>
+</tbody></table>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%9F%BA%E7%A1%80/" class="category-chain-item">基础</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/MATLAB/">#MATLAB</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>MATLAB基础知识</div>
+      <div>http://xungirl.cn/2021/10/13/MATLAB基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>迅</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年10月13日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/10/html%E5%85%A5%E9%97%A8/" title="HTML基础知识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HTML基础知识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/10/10/Python%E8%87%AA%E5%AD%A6/" title="Python自学">
+                        <span class="hidden-mobile">Python自学</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.4.17/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"PNar5ityKKmAm6EFt6FdTjWM-MdYXbMMI","appKey":"f3F4QOCwdBwdYjYGPBfj5HJb","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":true,"recordIP":false,"serverURLs":null,"emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
