@@ -26,4 +26,4 @@
   
     update();
     setInterval(update, 250);
-  })();
+  })();<link rel="stylesheet" href="/css/bilicard.css" type="text/css">

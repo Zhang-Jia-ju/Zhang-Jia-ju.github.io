@@ -74,4 +74,4 @@
         return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) +
             ")";
     }
-})(window, document);
+})(window, document);<link rel="stylesheet" href="/css/bilicard.css" type="text/css">

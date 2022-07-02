@@ -34,3 +34,4 @@
     "complete" == i.readyState && (i.onreadystatechange = null, a())
   })
 }(window);
+<link rel="stylesheet" href="/css/bilicard.css" type="text/css">
