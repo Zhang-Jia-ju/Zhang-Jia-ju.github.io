@@ -28,4 +28,4 @@
 
   update();
   setInterval(update, 1000);
-})();<link rel="stylesheet" href="/css/bilicard.css" type="text/css">
+})();
