@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>快速排序</title>
+    <link href="/2022/07/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    <url>/2022/07/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<p>快速排序是利用分治思想的排序算法，将一个数组分成两个子数组，将两部分独立地排序。</p><span id="more"></span><pre><code class=" mermaid">flowchart LRsubgraph 随机数6---11---22---77---99---33---44---55---1010---8    endleft--&gt;|左指针|6right--&gt;|右指针|8pivot--&gt;6</code></pre><p><span class="math display">\[思路\left\{               \begin{array}{**lr**}               j从右到左寻找小于pivot的值，发现则停滞 \\               i从左到右寻找大于pivot的值，发现则停滞\\               i和j都暂停后，交换分别指向的值，以此循环下去知道两者相遇交换pivot和共同指向的值\\               此时结束一趟，利用递归的思想继续             \end{array}  \right.\]</span></p><p>代码实现 ↓</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-meta">#<span class="hljs-keyword">define</span> N 10</span><br><span class="hljs-type">int</span> a[<span class="hljs-number">100</span>]; <span class="hljs-comment">//定义全局变量</span><br><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">quicksort</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> i, j, temp, t;<br>    <span class="hljs-keyword">if</span> (left &gt; right) <span class="hljs-comment">//左值不能大于右值</span><br>        <span class="hljs-keyword">return</span>;<br>    temp = a[left]; <br>    i = left;<br>    j = right;<br>    <span class="hljs-keyword">while</span> (i != j)<br>    &#123;<br>        <span class="hljs-keyword">while</span> (a[j] &gt;= temp &amp;&amp; i &lt; j) <span class="hljs-comment">//从右开始，元素值要大于基准数</span><br>            j--;<br>        <span class="hljs-keyword">while</span> (a[i] &lt;= temp &amp;&amp; i &lt; j) <span class="hljs-comment">//之后从左边开始，元素值要小于基准数</span><br>            i++;<br>        <span class="hljs-keyword">if</span> (i &lt; j) <span class="hljs-comment">//当i和j还没有相遇的时候</span><br>        &#123;<br>            t = a[i];<br>            a[i] = a[j];<br>            a[j] = t;<br>        &#125;<br>        <span class="hljs-comment">//下面两行是相遇之后基准数和左值交换</span><br>        a[left] = a[i];<br>        a[i] = temp;<br><br>        <span class="hljs-built_in">quicksort</span>(left, i - <span class="hljs-number">1</span>);<br>        <span class="hljs-built_in">quicksort</span>(i + <span class="hljs-number">1</span>, right);<br>        <span class="hljs-keyword">return</span>;<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-type">int</span> i;<br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt;= N; i++)<br>    &#123;<br>        cin &gt;&gt; a[i];<br>    &#125;<br>    <span class="hljs-built_in">quicksort</span>(<span class="hljs-number">1</span>, N); <span class="hljs-comment">//调用快速排序函数</span><br>    <span class="hljs-keyword">for</span> (i = <span class="hljs-number">1</span>; i &lt;= N; i++)<br>    &#123;<br>        cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;<br>    &#125;<br>    <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>算法</category>
+      
+      <category>排序</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Quicksort</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>冒泡排序</title>
     <link href="/2022/07/06/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"/>
     <url>/2022/07/06/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/</url>
