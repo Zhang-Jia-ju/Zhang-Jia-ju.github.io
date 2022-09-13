@@ -20,7 +20,7 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Getting Started with HTML">
 <meta property="og:url" content="http://xungirl.cn/posts/52546.html">
-<meta property="og:site_name" content="讯迅">
+<meta property="og:site_name" content="xun·steve">
 <meta property="og:description" content="超文本标记语言——HTML，是一种用于创建网页的标准标记语言。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://s2.loli.net/2021/12/09/69Y58itHRkJMXxq.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="https://s2.loli.net/2021/12/10/H9KLVskvqS3EZTR.png">
 <meta property="og:image" content="https://s2.loli.net/2021/12/10/gEtIkc84P6fZO3A.png">
 <meta property="article:published_time" content="2022-07-19T07:55:41.000Z">
-<meta property="article:modified_time" content="2022-08-06T14:34:37.498Z">
+<meta property="article:modified_time" content="2022-09-13T12:39:00.479Z">
 <meta property="article:author" content="迅">
 <meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary_large_image">
@@ -43,7 +43,7 @@
   
   
   
-  <title>Getting Started with HTML - 讯迅</title>
+  <title>Getting Started with HTML - xun·steve</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -278,7 +278,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.4k 字
+          8.1k 字
         
       </span>
     
@@ -289,7 +289,7 @@
         
         
         
-          62 分钟
+          68 分钟
         
       </span>
     
@@ -570,7 +570,7 @@ alt="image-20211210164512603" />
 </figure>
 <p>密码在输入的时候并不显示明文，而是以星号或者原点代替</p>
 <h4 id="单选按钮radio-buttons">3.单选按钮（Radio Buttons）</h4>
-<p><code>&lt;input type="radio"&gt;</code>标签定义了表单单选框选项</p>
+<p><code>&lt;input type="radio"&gt;</code>标签定义了表单单选框选项，<code>name</code>是确保这几个选项为一组</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;male&quot;</span>&gt;</span>Male<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;radio&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;sex&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;female&quot;</span>&gt;</span>Female<br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <figure>
 <img src="https://s2.loli.net/2021/12/10/Dj2siYwyPHXnGJk.png" srcset="/img/loading.gif" lazyload
@@ -580,7 +580,7 @@ alt="image-20211210164818046" />
 <p><code>value</code>表示选中选项的<strong>实际值</strong>，而至于后面写的Male和Female只是选项上面的字</p>
 <h4 id="复选按钮">4.复选按钮</h4>
 <p>与单选框类似，不过就是改成一个<strong>多选题</strong>而已，<code>&lt;input type="checkbox"&gt;</code>定义了复选框.
-用户需要从若干给定的选择中选取一个或若干选项。</p>
+用户需要从若干给定的选择中选取一个或若干选项。和上面相同，<code>name</code>的作用是确保这几个选项处于一组</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;vehicle&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Bike&quot;</span>&gt;</span>I have a bike<span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;checkbox&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;vehicle&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Car&quot;</span>&gt;</span>I have a car<br><span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <figure>
 <img src="https://s2.loli.net/2021/12/10/H9KLVskvqS3EZTR.png" srcset="/img/loading.gif" lazyload
@@ -600,9 +600,21 @@ alt="image-20211210165618876" />
 post（method="post"）的方式来发送。</p>
 <p><strong>重置按钮</strong>如下</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;reset&quot;</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&quot;Reset&quot;</span> /&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span><br></code></pre></td></tr></table></figure>
-<p>两者都有一个<code>value</code>值,这个主要是设定提交/重置按键上面的字</p>
-<hr />
-<p>综上所述吧，暂且到此为止，HTML的知识点太多了，后续遇到还会再更新，主要是我好累啊~，我想睡会觉</p>
+<p>两者都有一个<code>value</code>值,这个主要是设定<strong>提交</strong>/<strong>重置</strong>按键上面的字</p>
+<h4 id="多行文本框和下拉菜单">6.多行文本框和下拉菜单</h4>
+<p><code>&lt;textarea&gt;&lt;/textarea&gt;</code>表示多行文本框，可以用<code>rows</code>和<code>cols</code>表示行数和列数。</p>
+<p><code>&lt;select&gt;&lt;/select&gt;</code>表示下拉菜单，<code>&lt;option&gt;&lt;/option&gt;</code>用来表示选项的内容，<code>&lt;size</code>&gt;用来修饰下来菜单一次显示的项目数量</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">rows</span>=<span class="hljs-string">&quot;5&quot;</span> <span class="hljs-attr">cols</span>=<span class="hljs-string">&quot;20&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">br</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">size</span>=<span class="hljs-string">&quot;3&quot;</span> <span class="hljs-attr">multiple</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>shanghai<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>beijing<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>henan<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">option</span>&gt;</span>anhui<span class="hljs-tag">&lt;/<span class="hljs-name">option</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p><img
+src="https://tuchuang-1312256370.cos.ap-shanghai.myqcloud.com/image-20220913202903086.png" srcset="/img/loading.gif" lazyload
+alt="image-20220913202903086" />（三）创建表单</p>
+<h3 id="三图片和链接显示">(三）图片和链接显示</h3>
+<p>链接标签可以使用户链接到另一个界面，它的写法如下</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span> = <span class="hljs-string">&quot;https://xungirl.cn/&quot;</span>&gt;</span>迅的博客<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>显示就是↓</p>
+<p>​ <a href="https://xungirl.cn">迅的博客</a></p>
+<p>图片标签同理</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span><br> <span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;picture link&quot;</span>&gt;</span>title<span class="hljs-tag">&lt;/<span class="hljs-name">img</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span><br></code></pre></td></tr></table></figure>
 <link rel="stylesheet" href="/css/bilicard.css" type="text/css">
                 
               </div>
