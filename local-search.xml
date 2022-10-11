@@ -4,7 +4,7 @@
   
   
   <entry>
-    <title>python中的列表切片</title>
+    <title>List&amp;Copy in python</title>
     <link href="/posts/61471.html"/>
     <url>/posts/61471.html</url>
     
@@ -125,7 +125,7 @@
   
   
   <entry>
-    <title>快速排序</title>
+    <title>Quicksort by C++</title>
     <link href="/posts/11306.html"/>
     <url>/posts/11306.html</url>
     
@@ -152,7 +152,7 @@
   
   
   <entry>
-    <title>冒泡排序</title>
+    <title>Bubblesort by C++</title>
     <link href="/posts/21238.html"/>
     <url>/posts/21238.html</url>
     
@@ -170,7 +170,7 @@
     
     <tags>
       
-      <tag>冒泡</tag>
+      <tag>Bubblesort</tag>
       
     </tags>
     
