@@ -4,6 +4,45 @@
   
   
   <entry>
+    <title>链式存储链表</title>
+    <link href="/posts/26322.html"/>
+    <url>/posts/26322.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>迭代器</title>
+    <link href="/posts/22578.html"/>
+    <url>/posts/22578.html</url>
+    
+    <content type="html"><![CDATA[<h1 id="标准库类型vector">标准库类型vector</h1><p>标准库类型vector表示对象的集合，其中所有对象的类型都相同，这里可以类比C++中的数组和python中的列表.</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>std::vector&lt;<span class="hljs-type">int</span>&gt; v1=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">34</span>,<span class="hljs-number">5</span>&#125;;<br>std::cout&lt;&lt;v1[<span class="hljs-number">0</span>];<br> <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <br>&#125; <br></code></pre></td></tr></table></figure><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>C++面向对象</title>
+    <link href="/posts/26911.html"/>
+    <url>/posts/26911.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>variables in JAVA</title>
     <link href="/posts/60966.html"/>
     <url>/posts/60966.html</url>
@@ -143,7 +182,7 @@
     <link href="/posts/1.html"/>
     <url>/posts/1.html</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><span class="label label-danger">print(hello world)</span><p><code>hero</code></p><blockquote><p>Dorothy followed her through many of the beautiful rooms in hercastle.</p></blockquote><blockquote><p>Dorothy followed her through many of the beautiful rooms in hercastle The Witch bade her clean the pots and kettles and sweep the floorand keep the fire fed with wood.</p></blockquote><pre><code class=" mermaid">gitGraph cc       commit       branch develop       commit       commit       commit       checkout main       commit       commit</code></pre><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your veryfirst post. Check <a href="https://hexo.io/docs/">documentation</a> formore info. If you get any problems when using Hexo, you can find theanswer in <ahref="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> oryou can ask me on <ahref="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <ahref="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><span class="label label-danger">print(hello world)</span><p><code>hero</code></p><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
     
     
     
