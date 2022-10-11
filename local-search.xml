@@ -4,13 +4,27 @@
   
   
   <entry>
-    <title>链式存储链表</title>
-    <link href="/posts/26322.html"/>
-    <url>/posts/26322.html</url>
+    <title>python中的列表切片</title>
+    <link href="/posts/61471.html"/>
+    <url>/posts/61471.html</url>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    <content type="html"><![CDATA[<p>切片是Python序列中的重要操作之一，适用于列表、元组、字符串、range对象等。可以用切片截取列表中任何部分来获得一个新的列表，也可以进行元素的增、删、改。</p><span id="more"></span><figure><imgsrc="https://tuchuang-1312256370.cos.ap-shanghai.myqcloud.com/image-20221011110043781.png"alt="一个元素为PYTHON的list" /><figcaption aria-hidden="true">一个元素为PYTHON的list</figcaption></figure><p>由此可见Python中序列中的元素序号，从左往右依次为，0，1，2，3······；从右向左为-1，-2，-3······</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">list1 =[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]<br><span class="hljs-built_in">print</span>(list1[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(list1[-<span class="hljs-number">2</span>])<br></code></pre></td></tr></table></figure><p>opt<strong>↓</strong></p><p>1 7</p><p><span class="math display">\[start\le items&lt;stop\]</span></p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">a[:]           <span class="hljs-comment"># a copy of the whole array</span><br>a[start:]      <span class="hljs-comment"># items start through the rest of the array</span><br>a[:stop]       <span class="hljs-comment"># items from the beginning through stop-1</span><br>a[start:stop]  <span class="hljs-comment"># items start through stop-1</span><br><br>a[start:stop:step] <span class="hljs-comment"># start through not past stop, by step</span><br><br>a[-<span class="hljs-number">1</span>]    <span class="hljs-comment"># last item in the array</span><br>a[-<span class="hljs-number">2</span>:]   <span class="hljs-comment"># last two items in the array</span><br>a[:-<span class="hljs-number">2</span>]   <span class="hljs-comment"># everything except the last two items</span><br><br><br>a[::-<span class="hljs-number">1</span>]    <span class="hljs-comment"># all items in the array, reversed</span><br>a[<span class="hljs-number">1</span>::-<span class="hljs-number">1</span>]   <span class="hljs-comment"># the first two items, reversed</span><br>a[:-<span class="hljs-number">3</span>:-<span class="hljs-number">1</span>]  <span class="hljs-comment"># the last two items, reversed</span><br>a[-<span class="hljs-number">3</span>::-<span class="hljs-number">1</span>]  <span class="hljs-comment"># everything except the last two items, reversed</span><br></code></pre></td></tr></table></figure><h2 id="深拷贝浅拷贝">深拷贝&amp;浅拷贝</h2><p>在浅拷贝时，拷贝出来的新对象的地址和原对象是不一样的，但是新对象里面的可变元素（如列表）的地址和原对象里的可变元素的地址是相同的，也就是说浅拷贝它拷贝的是浅层次的数据结构（不可变元素），对象里的可变元素作为深层次的数据结构并没有被拷贝到新地址里面去，而是和原对象里的可变元素指向同一个地址，所以在新对象或原对象里对这个可变元素做修改时，两个对象是同时改变的，但是深拷贝不会这样，这个是浅拷贝相对于深拷贝最根本的区别。</p><figure><imgsrc="https://tuchuang-1312256370.cos.ap-shanghai.myqcloud.com/20200518145554672.png"alt="20200518145554672" /><figcaption aria-hidden="true">20200518145554672</figcaption></figure><p>copy.copy()</p><ul><li>单层列表 当<strong>list2</strong>指向一个新的内存地址，因此在<strong>list1</strong>的值发生改变的时候不会影响到<strong>list2</strong></li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> copy<br>list1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>list2 = copy.copy(list1)<br>list1[<span class="hljs-number">0</span>]=<span class="hljs-number">10</span><br><span class="hljs-built_in">print</span>(list2)<br></code></pre></td></tr></table></figure><p>opt：[1, 2, 3]</p><ul><li>嵌套列表浅拷贝只会拷贝<strong>list1</strong>中的第一层列表，内层列表是<strong>list1</strong>中的元素的引用，因此在内层列表发生改变的时候，<strong>list2</strong>的值也会跟着变（两者是引用捆绑的）；而对于外层列表，拷贝对象和被拷贝对象两者是独立的，其中一者的变化不会影响另一者。</li></ul><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> copy<br><br>old = [<span class="hljs-number">1</span>,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],<span class="hljs-number">3</span>]<br>new = old.copy()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Before:&#x27;</span>)<br><span class="hljs-built_in">print</span>(old)<br><span class="hljs-built_in">print</span>(new)<br>old[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span><br>old[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] =<span class="hljs-number">3</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;After:&#x27;</span>)<br><span class="hljs-built_in">print</span>(old)<br><span class="hljs-built_in">print</span>(new)<br></code></pre></td></tr></table></figure><p>opt：<strong>↓</strong></p><p>Before: [1, [1, 2, 3], 3] [1, [1, 2, 3], 3] After: [3, [3, 2, 3], 3][1, [3, 2, 3], 3]</p><p><spanstyle="border-bottom:2px dashed yellow;">一句话总结就是，多层列表浅拷贝内层跟着变外层不变，深拷贝啥都不变</span></p><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
     
     
+    <categories>
+      
+      <category>Python</category>
+      
+      <category>Grammer</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>列表</tag>
+      
+    </tags>
     
   </entry>
   
@@ -22,19 +36,6 @@
     <url>/posts/22578.html</url>
     
     <content type="html"><![CDATA[<h1 id="标准库类型vector">标准库类型vector</h1><p>标准库类型vector表示对象的集合，其中所有对象的类型都相同，这里可以类比C++中的数组和python中的列表.</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>std::vector&lt;<span class="hljs-type">int</span>&gt; v1=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">34</span>,<span class="hljs-number">5</span>&#125;;<br>std::cout&lt;&lt;v1[<span class="hljs-number">0</span>];<br> <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <br>&#125; <br></code></pre></td></tr></table></figure><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>C++面向对象</title>
-    <link href="/posts/26911.html"/>
-    <url>/posts/26911.html</url>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
     
     
     
