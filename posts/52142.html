@@ -24,7 +24,7 @@
 <meta property="og:description" content="When writing and running programs, errors and exceptions will inevitably occur.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-10-17T05:57:55.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:03:18.243Z">
+<meta property="article:modified_time" content="2022-10-17T07:05:24.551Z">
 <meta property="article:author" content="迅">
 <meta property="article:tag" content="异常">
 <meta property="article:tag" content="Python">
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          3.2k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          28 分钟
+          27 分钟
         
       </span>
     
@@ -355,10 +355,23 @@ id="try.....except...finally...异常处理结构">2.try.....except...finally...
 <strong>异常名称 as 变量</strong>；</p></li>
 <li><p>except子句的顺序会影响到程序的执行结果，如果异常之间存在包含关系，通常会将范围大的异常放在后面，范围小的异常放在前面；</p></li>
 <li><p>如果try或者except语句中存在<strong>continue</strong>,<strong>break</strong>,<strong>return</strong>语句，那么程序会优先执行<strong>finally</strong>语句。</p></li>
-<li><p>```mermaid flowchart TB A(try)--&gt;B(exception) B--&gt;C;
-C--&gt;D; B(exception) -.-&gt;D.-&gt;C(finally)</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>  <br><br><span class="hljs-comment">### 3.try…except…else…finally…异常处理结构</span><br><br>与上一个异常处理程序相比，多了一个**<span class="hljs-keyword">else</span>**语句，用于当<span class="hljs-keyword">try</span>语句没有出现异常且无<span class="hljs-keyword">return</span>语句的时候，执行<span class="hljs-keyword">else</span>语句。<span class="hljs-keyword">else</span>语句野不能独立存在必须跟在<span class="hljs-keyword">except</span>语句的后面。<br><br><span class="hljs-comment">### 4.raise自定义异常</span><br><br>Python的异常分为两种.<br><br><span class="hljs-number">1</span>、内建异常，就是Python自己定义的异常(上述)<br><br><span class="hljs-number">2</span>、不够用，用户自定义异常，<br><br>自定义异常必须**继承Exception类**，自定义异常按照命名规范以<span class="hljs-string">&quot;Error&quot;</span>结尾，显示地告诉程序员这是异常。自定义异常使用<span class="hljs-keyword">raise</span>语句引发，而且只能通过人工方式触发。<br><br>```python<br><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> division<br> <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DivisionException</span>(<span class="hljs-title class_ inherited__">Exception</span>):<br>      <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, x, y</span>):<br>            Exception.__init__ (self, x, y)       <span class="hljs-comment">#调用基类的__init__进行初始化</span><br>            self.x = x<br>            self.y = y<br> <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>      <span class="hljs-keyword">try</span>:<br>            x = <span class="hljs-number">3</span><br>            y = <span class="hljs-number">2</span><br>      <span class="hljs-keyword">if</span> x % y &gt; <span class="hljs-number">0</span>:                               <span class="hljs-comment">#如果大于0， 则不能被初始化，抛出异常</span><br>            <span class="hljs-built_in">print</span> x/y<br>            <span class="hljs-keyword">raise</span> DivisionException(x, y)<br><span class="hljs-keyword">except</span> DivisionException,div:                     <span class="hljs-comment">#div 表示DivisionException的实例对象</span><br>      <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;DivisionExcetion: x/y = %.2f&quot;</span> % (div.x/div.y)) <br></code></pre></td></tr></table></figure></li>
 </ul>
+<pre><code class=" mermaid">flowchart TB
+    A(try)--&gt;B(exception)
+    B--&gt;C;
+    C--&gt;D;
+    B(exception) -.-&gt;D&#123;&#123;return&#125;&#125;.-&gt;C(finally)
+
+</code></pre>
+<h3
+id="tryexceptelsefinally异常处理结构">3.try…except…else…finally…异常处理结构</h3>
+<p>与上一个异常处理程序相比，多了一个<strong>else</strong>语句，用于当try语句没有出现异常且无return语句的时候，执行else语句。else语句野不能独立存在必须跟在except语句的后面。</p>
+<h3 id="raise自定义异常">4.raise自定义异常</h3>
+<p>Python的异常分为两种.</p>
+<p>1、内建异常，就是Python自己定义的异常(上述)</p>
+<p>2、不够用，用户自定义异常，</p>
+<p>自定义异常必须<strong>继承Exception类</strong>，自定义异常按照命名规范以"Error"结尾，显示地告诉程序员这是异常。自定义异常使用raise语句引发，而且只能通过人工方式触发。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> division<br> <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DivisionException</span>(<span class="hljs-title class_ inherited__">Exception</span>):<br>      <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, x, y</span>):<br>            Exception.__init__ (self, x, y)       <span class="hljs-comment">#调用基类的__init__进行初始化</span><br>            self.x = x<br>            self.y = y<br> <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>      <span class="hljs-keyword">try</span>:<br>            x = <span class="hljs-number">3</span><br>            y = <span class="hljs-number">2</span><br>      <span class="hljs-keyword">if</span> x % y &gt; <span class="hljs-number">0</span>:                               <span class="hljs-comment">#如果大于0， 则不能被初始化，抛出异常</span><br>            <span class="hljs-built_in">print</span> x/y<br>            <span class="hljs-keyword">raise</span> DivisionException(x, y)<br><span class="hljs-keyword">except</span> DivisionException,div:                     <span class="hljs-comment">#div 表示DivisionException的实例对象</span><br>      <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;DivisionExcetion: x/y = %.2f&quot;</span> % (div.x/div.y)) <br></code></pre></td></tr></table></figure>
 <p>由此可知基本的逻辑是：</p>
 <p>1.定义异常类（继承Exception)</p>
 <p>2.执行try....except....</p>
