@@ -16,23 +16,23 @@
   <meta name="author" content="迅">
   <meta name="keywords" content="">
   
-    <meta name="description" content="切片是Python序列中的重要操作之一，适用于列表、元组、字符串、range对象等。可以用切片截取列表中任何部分来获得一个新的列表，也可以进行元素的增、删、改。">
+    <meta name="description" content="When writing and running programs, errors and exceptions will inevitably occur.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="列表与深浅拷贝">
-<meta property="og:url" content="http://xungirl.cn/posts/61471.html">
+<meta property="og:title" content="Python中的异常处理">
+<meta property="og:url" content="http://xungirl.cn/posts/52142.html">
 <meta property="og:site_name" content="xun·steve">
-<meta property="og:description" content="切片是Python序列中的重要操作之一，适用于列表、元组、字符串、range对象等。可以用切片截取列表中任何部分来获得一个新的列表，也可以进行元素的增、删、改。">
+<meta property="og:description" content="When writing and running programs, errors and exceptions will inevitably occur.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-11T02:46:27.000Z">
-<meta property="article:modified_time" content="2022-10-17T07:02:07.565Z">
+<meta property="article:published_time" content="2022-10-17T05:57:55.000Z">
+<meta property="article:modified_time" content="2022-10-17T07:03:18.243Z">
 <meta property="article:author" content="迅">
+<meta property="article:tag" content="异常">
 <meta property="article:tag" content="Python">
-<meta property="article:tag" content="列表">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>列表与深浅拷贝 - xun·steve</title>
+  <title>Python中的异常处理 - xun·steve</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="列表与深浅拷贝"></span>
+            <span id="subtitle" data-typed-text="Python中的异常处理"></span>
           
         </div>
 
@@ -255,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-10-11 10:46" pubdate>
-          2022年10月11日 上午
+        <time datetime="2022-10-17 13:57" pubdate>
+          2022年10月17日 下午
         </time>
       </span>
     
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          3.3k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          13 分钟
+          28 分钟
         
       </span>
     
@@ -316,54 +316,248 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">列表与深浅拷贝</h1>
+            <h1 style="display: none">Python中的异常处理</h1>
             
             
               <div class="markdown-body">
                 
-                <p>切片是Python序列中的重要操作之一，适用于列表、元组、字符串、range对象等。可以用切片截取列表中任何部分来获得一个新的列表，也可以进行元素的增、删、改。</p>
+                <p>When writing and running programs, errors and exceptions will
+inevitably occur.</p>
 <span id="more"></span>
-<figure>
-<img
-src="https://tuchuang-1312256370.cos.ap-shanghai.myqcloud.com/image-20221011110043781.png" srcset="/img/loading.gif" lazyload
-alt="一个元素为PYTHON的list" />
-<figcaption aria-hidden="true">一个元素为PYTHON的list</figcaption>
-</figure>
-<p>由此可见Python中序列中的元素序号，从左往右依次为，0，1，2，3······；从右向左为-1，-2，-3······</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">list1 =[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">5</span>,<span class="hljs-number">7</span>,<span class="hljs-number">9</span>]<br><span class="hljs-built_in">print</span>(list1[<span class="hljs-number">0</span>])<br><span class="hljs-built_in">print</span>(list1[-<span class="hljs-number">2</span>])<br></code></pre></td></tr></table></figure>
-<p>opt<strong>↓</strong></p>
-<p>1 7</p>
-<p><span class="math display">\[
-start\le items&lt;stop
-\]</span></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs python">a[:]           <span class="hljs-comment"># a copy of the whole array</span><br>a[start:]      <span class="hljs-comment"># items start through the rest of the array</span><br>a[:stop]       <span class="hljs-comment"># items from the beginning through stop-1</span><br>a[start:stop]  <span class="hljs-comment"># items start through stop-1</span><br><br>a[start:stop:step] <span class="hljs-comment"># start through not past stop, by step</span><br><br>a[-<span class="hljs-number">1</span>]    <span class="hljs-comment"># last item in the array</span><br>a[-<span class="hljs-number">2</span>:]   <span class="hljs-comment"># last two items in the array</span><br>a[:-<span class="hljs-number">2</span>]   <span class="hljs-comment"># everything except the last two items</span><br><br><br>a[::-<span class="hljs-number">1</span>]    <span class="hljs-comment"># all items in the array, reversed</span><br>a[<span class="hljs-number">1</span>::-<span class="hljs-number">1</span>]   <span class="hljs-comment"># the first two items, reversed</span><br>a[:-<span class="hljs-number">3</span>:-<span class="hljs-number">1</span>]  <span class="hljs-comment"># the last two items, reversed</span><br>a[-<span class="hljs-number">3</span>::-<span class="hljs-number">1</span>]  <span class="hljs-comment"># everything except the last two items, reversed</span><br></code></pre></td></tr></table></figure>
-<h2 id="深拷贝浅拷贝">深拷贝&amp;浅拷贝</h2>
-<p>在浅拷贝时，拷贝出来的新对象的地址和原对象是不一样的，但是新对象里面的可变元素（如列表）的地址和原对象里的可变元素的地址是相同的，也就是说浅拷贝它拷贝的是浅层次的数据结构（不可变元素），对象里的可变元素作为深层次的数据结构并没有被拷贝到新地址里面去，而是和原对象里的可变元素指向同一个地址，所以在新对象或原对象里对这个可变元素做修改时，两个对象是同时改变的，但是深拷贝不会这样，这个是浅拷贝相对于深拷贝最根本的区别。</p>
-<figure>
-<img
-src="https://tuchuang-1312256370.cos.ap-shanghai.myqcloud.com/20200518145554672.png" srcset="/img/loading.gif" lazyload
-alt="20200518145554672" />
-<figcaption aria-hidden="true">20200518145554672</figcaption>
-</figure>
-<p>copy.copy()</p>
+<h1 id="what">What?</h1>
+<p>异常是指程序语法正确，但执行中因一些意外而导致的错误</p>
+<pre><code class=" mermaid">flowchart TD
+    A(Throwable) --&gt; B(Error)
+    A --&gt; C(Exception)
+    C --&gt; D(RuntimeException)
+    C --&gt; E(非RuntimeException)
+</code></pre>
+<p><strong>异常处理</strong>是指程序设计时，就考虑到了可能出现的意外情况，为了避免因异常而导致程序终止给用户带来不好的体验，而做的一些额外操作。</p>
+<p><strong>For
+example:</strong>当执行两个数相除时，如果用户输入的除数为0，则提示用户除数不能为0，让他重新输入，而不是直接终止，给用户提示一大堆异常堆栈信息。异常处理使得异常出现后，程序仍然可以继续执行。</p>
+<h1 id="异常处理结构">异常处理结构</h1>
+<p>Python中通常将可能发生异常的代码放在<strong>try</strong>语句中，如果发生异常则通过<strong>except</strong>语句来捕获异常并对做一些额外处理，如果没有发生异常则执行后面的<strong>else</strong>语句，最后执行<strong>finally</strong>语句做一些收尾操作。</p>
+<h3
+id="try.....except...异常处理结构">1.try.....except...异常处理结构</h3>
+<p><strong>try</strong>语句中放置的是可能含有异常的语句，如果未发生异常，那么程序正常运行；</p>
+<p>如果发生异常
+，那么此时<strong>except</strong>(Java中是<strong>catch</strong>)语句就开始捕获异常，一个异常处理中可以有多个<strong>except</strong>语句，用来捕获匹配多种异常（这点类似于C++中的swich语句）。如果匹配成功那么将执行该<strong>except</strong>语句内的代码，执行结束后不会再执行其他except语句，并且异常处理结束；</p>
+<p>如果程序中存在异常，但是没有一条<strong>except</strong>语句将其捕获或者匹配。那么此时程序采用的是<strong>默认处理</strong>方式，即程序终止并打印异常的堆栈信息。所有通常情况下，我们会让最后一个<strong>except</strong>语句不指定异常的名称，处理所有潜在的异常保证程序运行。</p>
+<h3
+id="try.....except...finally...异常处理结构">2.try.....except...finally...异常处理结构</h3>
+<p>与上一个异常处理结构相比，多了一个<strong>finally</strong>语句。即无论程序是否有异常，都会执行finally语句，一般用来做一些程序的<strong>收尾</strong>工作。比如关闭文件，关闭窗口。</p>
+<p>注意事项：</p>
 <ul>
-<li>单层列表 当<strong>list2</strong>指向一个新的内存地址，因此
-在<strong>list1</strong>的值发生改变的时候
-不会影响到<strong>list2</strong></li>
+<li><p>try子句后面可以有多个except子句，分别用来处理不同类型的异常，但<strong>最多只有一个except子句会执行</strong>；</p></li>
+<li><p>一个except子句可以同时处理<strong>多个异常</strong>，多个异常名称放在一个元组中；</p></li>
+<li><p>通常会在except子句的最后加上一个<strong>不带异常名称的except子句</strong>或<strong>异常名称为Exception的except子句</strong>，此时可捕获所有的异常，避免程序意外终止；</p></li>
+<li><p>通常会<strong>将捕获到的异常赋值给某个变量</strong>，然后通过该变量获取异常的信息，例如<strong>except</strong>
+<strong>异常名称 as 变量</strong>；</p></li>
+<li><p>except子句的顺序会影响到程序的执行结果，如果异常之间存在包含关系，通常会将范围大的异常放在后面，范围小的异常放在前面；</p></li>
+<li><p>如果try或者except语句中存在<strong>continue</strong>,<strong>break</strong>,<strong>return</strong>语句，那么程序会优先执行<strong>finally</strong>语句。</p></li>
+<li><p>```mermaid flowchart TB A(try)--&gt;B(exception) B--&gt;C;
+C--&gt;D; B(exception) -.-&gt;D.-&gt;C(finally)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>  <br><br><span class="hljs-comment">### 3.try…except…else…finally…异常处理结构</span><br><br>与上一个异常处理程序相比，多了一个**<span class="hljs-keyword">else</span>**语句，用于当<span class="hljs-keyword">try</span>语句没有出现异常且无<span class="hljs-keyword">return</span>语句的时候，执行<span class="hljs-keyword">else</span>语句。<span class="hljs-keyword">else</span>语句野不能独立存在必须跟在<span class="hljs-keyword">except</span>语句的后面。<br><br><span class="hljs-comment">### 4.raise自定义异常</span><br><br>Python的异常分为两种.<br><br><span class="hljs-number">1</span>、内建异常，就是Python自己定义的异常(上述)<br><br><span class="hljs-number">2</span>、不够用，用户自定义异常，<br><br>自定义异常必须**继承Exception类**，自定义异常按照命名规范以<span class="hljs-string">&quot;Error&quot;</span>结尾，显示地告诉程序员这是异常。自定义异常使用<span class="hljs-keyword">raise</span>语句引发，而且只能通过人工方式触发。<br><br>```python<br><span class="hljs-keyword">from</span> __future__ <span class="hljs-keyword">import</span> division<br> <br><span class="hljs-keyword">class</span> <span class="hljs-title class_">DivisionException</span>(<span class="hljs-title class_ inherited__">Exception</span>):<br>      <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, x, y</span>):<br>            Exception.__init__ (self, x, y)       <span class="hljs-comment">#调用基类的__init__进行初始化</span><br>            self.x = x<br>            self.y = y<br> <br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>      <span class="hljs-keyword">try</span>:<br>            x = <span class="hljs-number">3</span><br>            y = <span class="hljs-number">2</span><br>      <span class="hljs-keyword">if</span> x % y &gt; <span class="hljs-number">0</span>:                               <span class="hljs-comment">#如果大于0， 则不能被初始化，抛出异常</span><br>            <span class="hljs-built_in">print</span> x/y<br>            <span class="hljs-keyword">raise</span> DivisionException(x, y)<br><span class="hljs-keyword">except</span> DivisionException,div:                     <span class="hljs-comment">#div 表示DivisionException的实例对象</span><br>      <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;DivisionExcetion: x/y = %.2f&quot;</span> % (div.x/div.y)) <br></code></pre></td></tr></table></figure></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> copy<br>list1 = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]<br>list2 = copy.copy(list1)<br>list1[<span class="hljs-number">0</span>]=<span class="hljs-number">10</span><br><span class="hljs-built_in">print</span>(list2)<br></code></pre></td></tr></table></figure>
-<p>opt：[1, 2, 3]</p>
-<ul>
-<li>嵌套列表
-浅拷贝只会拷贝<strong>list1</strong>中的第一层列表，内层列表是<strong>list1</strong>中的元素的引用，因此在内层列表发生改变的时候，<strong>list2</strong>的值也会跟着变（两者是引用捆绑的）；而对于外层列表，拷贝对象和被拷贝对象两者是独立的，其中一者的变化不会影响另一者。</li>
-</ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> copy<br><br>old = [<span class="hljs-number">1</span>,[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>],<span class="hljs-number">3</span>]<br>new = old.copy()<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;Before:&#x27;</span>)<br><span class="hljs-built_in">print</span>(old)<br><span class="hljs-built_in">print</span>(new)<br>old[<span class="hljs-number">0</span>] = <span class="hljs-number">3</span><br>old[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] =<span class="hljs-number">3</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;After:&#x27;</span>)<br><span class="hljs-built_in">print</span>(old)<br><span class="hljs-built_in">print</span>(new)<br></code></pre></td></tr></table></figure>
-<p>opt：<strong>↓</strong></p>
-<p>Before: [1, [1, 2, 3], 3] [1, [1, 2, 3], 3] After: [3, [3, 2, 3], 3]
-[1, [3, 2, 3], 3]</p>
-<p><span
-style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
-浅拷贝内层跟着变外层不变，深拷贝啥都不变</span></p>
+<p>由此可知基本的逻辑是：</p>
+<p>1.定义异常类（继承Exception)</p>
+<p>2.执行try....except....</p>
+<h1 id="附表">附表</h1>
+<table>
+
+<thead>
+<tr class="header">
+<th style="text-align: center;">BaseException</th>
+<th style="text-align: center;">所有异常的基类</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">SystemExit</td>
+<td style="text-align: center;">解释器请求退出</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">KeyboardInterrupt</td>
+<td style="text-align: center;">用户中断执行(通常是输入^C)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Exception</td>
+<td style="text-align: center;">常规错误的基类</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">StopIteration</td>
+<td style="text-align: center;">迭代器没有更多的值</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">GeneratorExit</td>
+<td style="text-align: center;">生成器(generator)发生异常来通知退出</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">StandardError</td>
+<td style="text-align: center;">所有的内建标准异常的基类</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ArithmeticError</td>
+<td style="text-align: center;">所有数值计算错误的基类</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">FloatingPointError</td>
+<td style="text-align: center;">浮点计算错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">OverflowError</td>
+<td style="text-align: center;">数值运算超出最大限制</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ZeroDivisionError</td>
+<td style="text-align: center;">除(或取模)零 (所有数据类型)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">AssertionError</td>
+<td style="text-align: center;">断言语句失败</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AttributeError</td>
+<td style="text-align: center;">对象没有这个属性</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">EOFError</td>
+<td style="text-align: center;">没有内建输入,到达EOF 标记</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">EnvironmentError</td>
+<td style="text-align: center;">操作系统错误的基类</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">IOError</td>
+<td style="text-align: center;">输入/输出操作失败</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">OSError</td>
+<td style="text-align: center;">操作系统错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">WindowsError</td>
+<td style="text-align: center;">系统调用失败</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">ImportError</td>
+<td style="text-align: center;">导入模块/对象失败</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">LookupError</td>
+<td style="text-align: center;">无效数据查询的基类</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">IndexError</td>
+<td style="text-align: center;">序列中没有此索引(index)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">KeyError</td>
+<td style="text-align: center;">映射中没有这个键</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">MemoryError</td>
+<td style="text-align: center;">内存溢出错误(对于Python
+解释器不是致命的)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NameError</td>
+<td style="text-align: center;">未声明/初始化对象 (没有属性)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">UnboundLocalError</td>
+<td style="text-align: center;">访问未初始化的本地变量</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ReferenceError</td>
+<td style="text-align: center;">弱引用(Weak
+reference)试图访问已经垃圾回收了的对象</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">RuntimeError</td>
+<td style="text-align: center;">一般的运行时错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NotImplementedError</td>
+<td style="text-align: center;">尚未实现的方法</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">SyntaxError</td>
+<td style="text-align: center;">Python 语法错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">IndentationError</td>
+<td style="text-align: center;">缩进错误</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TabError</td>
+<td style="text-align: center;">Tab 和空格混用</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">SystemError</td>
+<td style="text-align: center;">一般的解释器系统错误</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TypeError</td>
+<td style="text-align: center;">对类型无效的操作</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ValueError</td>
+<td style="text-align: center;">传入无效的参数</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">UnicodeError</td>
+<td style="text-align: center;">Unicode 相关的错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">UnicodeDecodeError</td>
+<td style="text-align: center;">Unicode 解码时的错误</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">UnicodeEncodeError</td>
+<td style="text-align: center;">Unicode 编码时错误</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">UnicodeTranslateError</td>
+<td style="text-align: center;">Unicode 转换时错误</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Warning</td>
+<td style="text-align: center;">警告的基类</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">DeprecationWarning</td>
+<td style="text-align: center;">关于被弃用的特征的警告</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">FutureWarning</td>
+<td style="text-align: center;">关于构造将来语义会有改变的警告</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">OverflowWarning</td>
+<td
+style="text-align: center;">旧的关于自动提升为长整型(long)的警告</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">PendingDeprecationWarning</td>
+<td style="text-align: center;">关于特性将会被废弃的警告</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">RuntimeWarning</td>
+<td style="text-align: center;">可疑的运行时行为(runtime
+behavior)的警告</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">SyntaxWarning</td>
+<td style="text-align: center;">可疑的语法的警告</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">UserWarning</td>
+<td style="text-align: center;">用户代码生成的警告</td>
+</tr>
+</tbody>
+</table>
 <link rel="stylesheet" href="/css/bilicard.css" type="text/css">
                 
               </div>
@@ -404,9 +598,9 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Python/">#Python</a>
+        <a href="/tags/%E5%BC%82%E5%B8%B8/">#异常</a>
       
-        <a href="/tags/%E5%88%97%E8%A1%A8/">#列表</a>
+        <a href="/tags/Python/">#Python</a>
       
     </div>
   
@@ -418,8 +612,8 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>列表与深浅拷贝</div>
-      <div>http://xungirl.cn/posts/61471.html</div>
+      <div>Python中的异常处理</div>
+      <div>http://xungirl.cn/posts/52142.html</div>
     </div>
     <div class="license-meta">
       
@@ -431,7 +625,7 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年10月11日</div>
+          <div>2022年10月17日</div>
         </div>
       
       
@@ -461,18 +655,12 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/60272.html" title="super &amp; this in Java">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">super &amp; this in Java</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/22578.html" title="迭代器">
-                        <span class="hidden-mobile">迭代器</span>
+                      <a href="/posts/57960.html" title="多线程和多进程">
+                        <span class="hidden-mobile">多线程和多进程</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -528,11 +716,12 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
   
 
 
-  
-  
 
-
-
+  <script>
+  Fluid.utils.createScript('https://lib.baomitu.com/mermaid/8.14.0/mermaid.min.js', function() {
+    mermaid.initialize({"theme":"default"});
+  });
+</script>
 
 
 
@@ -698,40 +887,6 @@ style="border-bottom:2px dashed yellow;">一句话总结就是，多层列表
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
