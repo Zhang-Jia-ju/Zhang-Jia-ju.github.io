@@ -4,6 +4,61 @@
   
   
   <entry>
+    <title>init &amp; new (constructor) in Python</title>
+    <link href="/posts/64139.html"/>
+    <url>/posts/64139.html</url>
+    
+    <content type="html"><![CDATA[<p>当上帝的时刻到了！</p><span id="more"></span><span class="label label-danger">Python中cls代表的是类的本身，相对应的self则是类的一个实例对象</span><h1 id="init__">__init__</h1><p>__init__方法中是类里面的构造函数，一般用来定义类中的属性。</p><p>1.先来一个最基本的↓</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.name = <span class="hljs-string">&quot;steve&quot;</span><br>    <br>obj1 = Boy()<span class="hljs-comment"># create an object</span><br><span class="hljs-built_in">print</span>(obj1.name)<br></code></pre></td></tr></table></figure><p>2.让属性更加<strong>灵活</strong>↓</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <br>obj1 = Boy(<span class="hljs-string">&quot;mask&quot;</span>)<span class="hljs-comment"># chreat an object and the value of attribute</span><br><span class="hljs-built_in">print</span>(obj1.name)<br></code></pre></td></tr></table></figure><p>3.再加点<strong>方法</strong>吧↓</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">age</span>(<span class="hljs-params">self,age</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span> is <span class="hljs-subst">&#123;age&#125;</span> years old&quot;</span>)<br>    <br>obj1 = Boy(<span class="hljs-string">&quot;musk&quot;</span>)<span class="hljs-comment"># chreat an object and the value of attribute</span><br>obj1.age(<span class="hljs-number">51</span>) <br></code></pre></td></tr></table></figure><p>在创造对象<code>obj1</code>的时，将类中的属性传入参数（"musk")；在调用类的方法时，传入参数（51）。</p><h1 id="new__">__new__</h1><p><strong>new</strong>方法接受的参数虽然也是和<strong>init</strong>几乎一样，但<strong>init</strong>是在类实例创建之后调用，而<strong>new</strong>方法正是创建这个类实例的方法。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__new__</span>(<span class="hljs-params">cls,name</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;__new__方法被执行&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>(Boy,cls).__new__(cls)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">age</span>(<span class="hljs-params">self,age</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span> is <span class="hljs-subst">&#123;age&#125;</span> years old&quot;</span>)<br><br>obj1 = Boy(<span class="hljs-string">&quot;musk&quot;</span>)<br>obj1.age(<span class="hljs-number">51</span>) <br></code></pre></td></tr></table></figure><p>new方法和init方法除了两者自身的参数cls和self外，其他的参数应该保持一致</p><p>PS：一般我们不会去重写该方法，除非你确切知道怎么做，什么时候你会去关心它呢，它作为构造函数用于创建对象，是一个<ahref="https://www.zhihu.com/search?q=工厂函数&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A%2227830675%22%7D">工厂函数</a>，专用于生产实例对象。著名的设计模式之一，<ahref="https://www.zhihu.com/search?q=单例模式&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A%2227830675%22%7D">单例模式</a>，就可以通过此方法来实现。在自己写框架级的代码时，可能你会用到它，我们也可以从开源代码中找到它的应用场景，例如微型Web 框架 Bootle 就用到了。</p><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    <categories>
+      
+      <category>Python</category>
+      
+      <category>Class</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>OOP</tag>
+      
+      <tag>Python</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>create object in C++</title>
+    <link href="/posts/10949.html"/>
+    <url>/posts/10949.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vector &amp; string 常用的顺序容器in C++</title>
+    <link href="/posts/25214.html"/>
+    <url>/posts/25214.html</url>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Python中的异常处理</title>
     <link href="/posts/52142.html"/>
     <url>/posts/52142.html</url>
@@ -22,9 +77,9 @@
     
     <tags>
       
-      <tag>异常</tag>
-      
       <tag>Python</tag>
+      
+      <tag>异常</tag>
       
     </tags>
     
@@ -100,19 +155,6 @@
   
   
   <entry>
-    <title>迭代器</title>
-    <link href="/posts/22578.html"/>
-    <url>/posts/22578.html</url>
-    
-    <content type="html"><![CDATA[<h1 id="标准库类型vector">标准库类型vector</h1><p>标准库类型vector表示对象的集合，其中所有对象的类型都相同，这里可以类比C++中的数组和python中的列表.</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;stdlib.h&gt;</span></span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>std::vector&lt;<span class="hljs-type">int</span>&gt; v1=&#123;<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">34</span>,<span class="hljs-number">5</span>&#125;;<br>std::cout&lt;&lt;v1[<span class="hljs-number">0</span>];<br> <span class="hljs-built_in">system</span>(<span class="hljs-string">&quot;pause&quot;</span>);<br> <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>; <br>&#125; <br></code></pre></td></tr></table></figure><link rel="stylesheet" href="/css/bilicard.css" type="text/css">]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>variables in Java</title>
     <link href="/posts/60966.html"/>
     <url>/posts/60966.html</url>
@@ -156,9 +198,9 @@
     
     <tags>
       
-      <tag>Python</tag>
-      
       <tag>OOP</tag>
+      
+      <tag>Python</tag>
       
     </tags>
     

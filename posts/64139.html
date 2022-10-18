@@ -16,15 +16,15 @@
   <meta name="author" content="迅">
   <meta name="keywords" content="">
   
-    <meta name="description" content="类是模板，而实例则是根据类创建的对象。">
+    <meta name="description" content="当上帝的时刻到了！">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Class in Python">
-<meta property="og:url" content="http://xungirl.cn/posts/64976.html">
+<meta property="og:title" content="init &amp; new (constructor) in Python">
+<meta property="og:url" content="http://xungirl.cn/posts/64139.html">
 <meta property="og:site_name" content="xun·steve">
-<meta property="og:description" content="类是模板，而实例则是根据类创建的对象。">
+<meta property="og:description" content="当上帝的时刻到了！">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-30T02:07:09.000Z">
-<meta property="article:modified_time" content="2022-08-06T13:29:58.064Z">
+<meta property="article:published_time" content="2022-10-18T07:56:27.000Z">
+<meta property="article:modified_time" content="2022-10-18T11:55:43.461Z">
 <meta property="article:author" content="迅">
 <meta property="article:tag" content="OOP">
 <meta property="article:tag" content="Python">
@@ -32,7 +32,7 @@
   
   
   
-  <title>Class in Python - xun·steve</title>
+  <title>init &amp; new (constructor) in Python - xun·steve</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -244,7 +244,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Class in Python"></span>
+            <span id="subtitle" data-typed-text="init &amp; new (constructor) in Python"></span>
           
         </div>
 
@@ -255,8 +255,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-07-30 10:07" pubdate>
-          2022年7月30日 上午
+        <time datetime="2022-10-18 15:56" pubdate>
+          2022年10月18日 下午
         </time>
       </span>
     
@@ -267,7 +267,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.2k 字
         
       </span>
     
@@ -278,7 +278,7 @@
         
         
         
-          12 分钟
+          10 分钟
         
       </span>
     
@@ -316,56 +316,33 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Class in Python</h1>
+            <h1 style="display: none">init &amp; new (constructor) in Python</h1>
             
             
               <div class="markdown-body">
                 
-                <p>类是模板，而实例则是根据类创建的对象。</p>
+                <p>当上帝的时刻到了！</p>
 <span id="more"></span>
-<h1 id="一创建和使用类">一、创建和使用类</h1>
-<p>使用类几乎可以模拟任何东西，在类中，主要是由属性和方法构成的，属性是一个状态名词（比如小狗的颜色、品种、年龄和体重等等）
-而方法是一个行为（比如小狗吃、跳跃、奔跑、叫等等）。</p>
-<h2 id="创建一个dog类">1.创建一个Dog类：↓</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Dog</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name,age</span>):<br>        self.name = name<br>        self.age = age<br>        <span class="hljs-comment">#建立类中的属性，即name和age</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">sit</span>(<span class="hljs-params">self</span>):<span class="hljs-comment">#sit方法记录小狗sitting的行为</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span> is not sitting&quot;</span>)<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">years</span>(<span class="hljs-params">self</span>):<span class="hljs-comment">#years方法记录小狗的年龄行为</span><br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span>is <span class="hljs-subst">&#123;self.age&#125;</span> years old&quot;</span>)<br></code></pre></td></tr></table></figure>
-<p>可以看到这个类Dog中有类的属性和方法的描述</p>
-<h2 id="根据类创建实例">2.根据类创建实例</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">my_dog = Dog(<span class="hljs-string">&quot;yellow&quot;</span>,<span class="hljs-number">10</span>)<br>my_dog.years()<br>my_dog.sit()<br></code></pre></td></tr></table></figure>
-<p>1.py中的创建<strong>实例</strong>的具体格式：<span class="label label-danger">object=class()</span>,括号里写构造函数<code>__init__</code>中的形参对应的实参</p>
-<ol start="2" type="1">
-<li><p>py中的调用<strong>方法</strong>的具体格式：<span class="label label-danger">object.methods()</span>,括号里面写方法中形参（self除外）对应的实参</p></li>
-<li><p>py中的访问属性的具体格式：<span class="label label-danger">object.attribute()</span></p></li>
-</ol>
-<p><span class="math display">\[
-PS:\left\{  
-             \begin{array}{**lr**}  
-             self.variate这种形式仅仅用于类的内部 \\  
-             object.variate这种形式用于类的外部
-             \end{array}  
-\right.
-\]</span></p>
-<h1 id="二继承">二、继承</h1>
-<p>1.创建父类 ↓</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, fname, lname</span>):<br>        self.fname = fname<br>        self.lname = lname<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">printname</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-built_in">print</span>(self.fname)<br></code></pre></td></tr></table></figure>
-<p>2.创建子类 ↓</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Student</span>(<span class="hljs-title class_ inherited__">Person</span>): <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, fname, lname</span>):<br>       <span class="hljs-built_in">super</span>().__init__(fname, lname)<span class="hljs-comment">#继承父类的构造方法</span><br>     <br>x=Student(<span class="hljs-string">&quot;Elon&quot;</span>,<span class="hljs-string">&quot;Mask&quot;</span>)<br>x.printname()<br></code></pre></td></tr></table></figure>
-<p>out↓</p>
-<p>​ Elon</p>
-<p>子类中<code>super().__init__()</code>保持对父类构造函数的继承</p>
-<p>3.调用父类的方法</p>
-<p>(1)利用super</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">printname_zi</span>(<span class="hljs-params">self</span>):<br>     <span class="hljs-built_in">super</span>().printname()<br></code></pre></td></tr></table></figure>
-<p>(2)利用父类名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">printname_zi</span>(<span class="hljs-params">self</span>):<br>     Person.printname(self)<br></code></pre></td></tr></table></figure>
-<h1 id="三模块存储">三、模块存储</h1>
-<p>1.导入多个/单个类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> module <span class="hljs-keyword">import</span> class1,<span class="hljs-keyword">class</span> <span class="hljs-number">2</span><br><span class="hljs-comment">#创建对象</span><br><span class="hljs-built_in">object</span> = <span class="hljs-keyword">class</span>()<br></code></pre></td></tr></table></figure>
-<p>2.导入该模块中的所有类</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> module <span class="hljs-keyword">import</span> *<br><span class="hljs-comment">#创建对象</span><br><span class="hljs-built_in">object</span> = <span class="hljs-keyword">class</span>()<br></code></pre></td></tr></table></figure>
-<p>3.导入整个模块（所有类）</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> module <br><span class="hljs-comment">#创建对象</span><br><span class="hljs-built_in">object</span> = module.<span class="hljs-keyword">class</span>() <br></code></pre></td></tr></table></figure>
-<p>*<strong>ps</strong>：使用别名</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> module <span class="hljs-keyword">import</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">as</span> A<br><span class="hljs-comment"># class的代名为A</span><br></code></pre></td></tr></table></figure>
+<span class="label label-danger">Python中cls代表的是类的本身，相对应的self则是类的一个实例对象</span>
+<h1 id="init__">__init__</h1>
+<p>__init__方法中是类里面的构造函数，一般用来定义类中的属性。</p>
+<p>1.先来一个最基本的↓</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self</span>):<br>        self.name = <span class="hljs-string">&quot;steve&quot;</span><br>    <br>obj1 = Boy()<span class="hljs-comment"># create an object</span><br><span class="hljs-built_in">print</span>(obj1.name)<br></code></pre></td></tr></table></figure>
+<p>2.让属性更加<strong>灵活</strong>↓</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <br>obj1 = Boy(<span class="hljs-string">&quot;mask&quot;</span>)<span class="hljs-comment"># chreat an object and the value of attribute</span><br><span class="hljs-built_in">print</span>(obj1.name)<br></code></pre></td></tr></table></figure>
+<p>3.再加点<strong>方法</strong>吧↓</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">age</span>(<span class="hljs-params">self,age</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span> is <span class="hljs-subst">&#123;age&#125;</span> years old&quot;</span>)<br>    <br>obj1 = Boy(<span class="hljs-string">&quot;musk&quot;</span>)<span class="hljs-comment"># chreat an object and the value of attribute</span><br>obj1.age(<span class="hljs-number">51</span>) <br></code></pre></td></tr></table></figure>
+<p>在创造对象<code>obj1</code>的时，将类中的属性传入参数（"musk")；在调用类的方法时，传入参数（51）。</p>
+<h1 id="new__">__new__</h1>
+<p><strong>new</strong>方法接受的参数虽然也是和<strong>init</strong>几乎一样，但<strong>init</strong>是在类实例创建之后调用，而
+<strong>new</strong>方法正是创建这个类实例的方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Boy</span>(<span class="hljs-title class_ inherited__">object</span>):<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__new__</span>(<span class="hljs-params">cls,name</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;__new__方法被执行&quot;</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">super</span>(Boy,cls).__new__(cls)<br>        <br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self,name</span>):<br>        self.name = name<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">age</span>(<span class="hljs-params">self,age</span>):<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;<span class="hljs-subst">&#123;self.name&#125;</span> is <span class="hljs-subst">&#123;age&#125;</span> years old&quot;</span>)<br><br>obj1 = Boy(<span class="hljs-string">&quot;musk&quot;</span>)<br>obj1.age(<span class="hljs-number">51</span>) <br></code></pre></td></tr></table></figure>
+<p>new方法和init方法
+除了两者自身的参数cls和self外，其他的参数应该保持一致</p>
+<p>PS：一般我们不会去重写该方法，除非你确切知道怎么做，什么时候你会去关心它呢，它作为构造函数用于创建对象，是一个<a
+target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=工厂函数&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A%2227830675%22%7D">工厂函数</a>，专用于生产实例对象。著名的设计模式之一，<a
+target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=单例模式&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra=%7B%22sourceType%22%3A%22article%22%2C%22sourceId%22%3A%2227830675%22%7D">单例模式</a>，就可以通过此方法来实现。在自己写框架级的代码时，可能你会用到它，我们也可以从开源代码中找到它的应用场景，例如微型
+Web 框架 Bootle 就用到了。</p>
 <link rel="stylesheet" href="/css/bilicard.css" type="text/css">
                 
               </div>
@@ -420,8 +397,8 @@ PS:\left\{
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Class in Python</div>
-      <div>http://xungirl.cn/posts/64976.html</div>
+      <div>init &amp; new (constructor) in Python</div>
+      <div>http://xungirl.cn/posts/64139.html</div>
     </div>
     <div class="license-meta">
       
@@ -433,7 +410,7 @@ PS:\left\{
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年7月30日</div>
+          <div>2022年10月18日</div>
         </div>
       
       
@@ -463,18 +440,12 @@ PS:\left\{
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/60966.html" title="variables in Java">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">variables in Java</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/52546.html" title="Getting Started with HTML">
-                        <span class="hidden-mobile">Getting Started with HTML</span>
+                      <a href="/posts/10949.html" title="create object in C++">
+                        <span class="hidden-mobile">create object in C++</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -528,12 +499,6 @@ PS:\left\{
 
 
   
-
-
-  
-  
-
-
 
 
 
@@ -700,40 +665,6 @@ PS:\left\{
 
 
   <script>Fluid.plugins.imageCaption();</script>
-
-  
-      <script>
-        if (!window.MathJax) {
-          window.MathJax = {
-            tex    : {
-              inlineMath: { '[+]': [['$', '$']] }
-            },
-            loader : {
-              load: ['ui/lazy']
-            },
-            options: {
-              renderActions: {
-                insertedScript: [200, () => {
-                  document.querySelectorAll('mjx-container').forEach(node => {
-                    let target = node.parentNode;
-                    if (target.nodeName.toLowerCase() === 'li') {
-                      target.parentNode.classList.add('has-jax');
-                    }
-                  });
-                }, '', false]
-              }
-            }
-          };
-        } else {
-          MathJax.startup.document.state(0);
-          MathJax.texReset();
-          MathJax.typeset();
-          MathJax.typesetPromise();
-        }
-      </script>
-    
-
-  <script  src="https://lib.baomitu.com/mathjax/3.2.1/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
